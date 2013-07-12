@@ -1,0 +1,11 @@
+{
+  "name": "data",
+  "version": "0.0.0",
+  "description": "XMLTV Data Updater",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabe Vader",
+  "license": "BSD"
+}
