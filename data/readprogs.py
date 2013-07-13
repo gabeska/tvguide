@@ -17,11 +17,17 @@ def readXMLguide(filename):
     for c in channels:
         id=c.get('id')
         name=c[0].text
-        ch={'name':name,'id':id}
-        channellist.append(ch)
-        #hier dict van maken en nummers in proglijst door channel vervangen?
-        #print name
+        icon=c.find('icon')
         
+        if icon is None:
+            iconURL=''
+        else:
+            iconURL=icon.get('src')
+
+        ch={'name':name,'id':id, 'iconURL':iconURL}
+        channellist.append(ch)
+        
+
     channeldict=dict([(c.get('id'),c.get('name')) for c in channellist])
     
     
@@ -50,29 +56,40 @@ def readXMLguide(filename):
         else:
             category=category.text
         
+        categoryset.add(category)
         
-        for cat in categories:
-            categoryset.add(cat)
+        #for cat in categories:
+        #    categoryset.add(cat)
         
-        prog={'title':title,'start':start,'stop':stop,'channel':channel,'desc':desc,'category':category,'categories':categories}
+        prog={'title':title,'start':start,'stop':stop,'channel':channel,'desc':desc,'category':category, 'show':True}
         
         programmelist.append(prog)
-        
-    
-    return channellist,programmelist,categoryset
 
-def getByGenre(programmelist,genre):
-    progs = [prog for prog in programmelist if genre in prog.get('categories')]
-    return progs
+        categorylist=[]
+        categorylist=[{'genre':cat} for cat in categoryset]
+    
+    return channellist,programmelist,categorylist
+
+
+#def getByGenre(programmelist,genre):
+#    progs = [prog for prog in programmelist if genre in prog.get('categories')]
+#    return progs
          
 def updateDB():
-	client=MongoClient()
-	db=client.myguide
-	programmes=db.programmes2
-	channellist,programmelist,categoryset=readXMLguide('tvguide.xml')
-	programmes.insert(programmelist)
-	db.genres2.insert(categoryset)
-	db.channels2.insert(channellist)
+    client=MongoClient()
+    db=client.myguide
+    programmes=db.programmes
+    channellist,programmelist,categorylist=readXMLguide('newtvguide.xml')
+    #print channellist
+    #print categorylist
+
+
+    programmes.remove()
+    programmes.insert(programmelist)
+    db.genres.remove()
+    db.genres.insert(categorylist)
+    db.channels.remove()
+    db.channels.insert(channellist)
 
 updateDB()
 
