@@ -13,8 +13,8 @@
 <div class="container-fluid">
 	<header class="row-fluid">
     	<h1 class="span12">Myguide</h1>
-        <button class="btn btn-danger" id="refreshBtn">Reload</button>
-        <a href="#programmeModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+        <button class="btn btn-danger" id="refreshBtn" data-loading-text="Loading...">Reload</button>
+        <button type="button" class="btn btn-primary" data-toggle="button" id="hideCrapBtn">Hide Crap</button>
     </header>
     
 	<section class="row-fluid">
@@ -38,7 +38,7 @@
         </div>
 
         
-    	<article class="span6">
+    	<article class="span6" id="programmesArticle">
             <ul class="nav nav-list" id="programmesList">
             <li class="nav-header">Programmes</li>
 
@@ -55,15 +55,18 @@
 
 	<div id="programmeModal" class="modal hide" role="dialog">
     	  <div class="modal-header">
-    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    		<h3>Modal header</h3>
+    		<button type="button" class="close" data-dismiss="modal">&times;</button>
+    		<h3 id="titleHeader">Modal header</h3>
   		</div>
   		<div class="modal-body">
-    		<p>One fine body…</p>
+    		<p id="modalDesc">One fine body…</p>
+            <p id="modalDateTime">Tomorrow 3pm-4pm</p>
+            <p id="modalChannel">PulpNet</p>
   		</div>
   		<div class="modal-footer">
     	<a href="#" class="btn" data-dismiss="modal">Close</a>
-    	<a href="#" class="btn btn-primary">Save changes</a>
+        <a href="#" class="btn btn-warning">Hide</a>
+    	<a href="#" class="btn btn-primary">Record</a>
   		</div>
     
     </div>
@@ -74,6 +77,8 @@
 <script src="scripts/jquery-2.0.3.js"></script>
 <script src="scripts/taffy.js"></script>
 <script src="scripts/bootstrap.js"></script>
+<script src="scripts/moment.min.js"></script>
+<script src="scripts/infinity.js"></script>
 <script src="scripts/tvguide.js"></script>
 
 </body>

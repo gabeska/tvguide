@@ -15,16 +15,19 @@ $(document).ready(function(){
 			genres=data;
 			refreshGenres();
 		});
-	$.getJSON(minimacURL+'programmes', function(data) {
+		$.getJSON(minimacURL+'programmes', function(data) {
 	
 			programmes=TAFFY(data);
 			//var prog=programmes().first();
 			//console.log(prog.title,prog.category, prog.channel, prog.start, prog.stop, prog.desc);
+			$("#refreshBtn").button('reset');
+			console.log('finished reloadData');
 		});
+		
 	
 	
 	
-	};
+	}
 	function refreshGenres() {
 		var genresList=$("#genresList");
 		genresList.empty(); // Todo: haalt ook 'All' knop weg!
@@ -36,8 +39,6 @@ $(document).ready(function(){
 						c)
 					)
 				);
-				//$("#content ul li:last").after('<li><a href="/user/messages"><span class="tab">Message Center</span></a></li>');
-				    //<li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
 	
 			});
 
@@ -58,7 +59,7 @@ $(document).ready(function(){
 		var channelsList=$("#channelsList");
 		channelsList.empty(); //Todo: haalt ook 'All' knop weg!
 			$.each(channels,function (i,c) {
-				console.log(c);
+				//console.log(c);
 				var iconURL=c.iconURL;
 				if(iconURL) {
 					console.log(iconURL);
@@ -90,16 +91,26 @@ $(document).ready(function(){
 
 	}	
 	
+	function formatStartStop(startDate, stopDate) {
+		var startText=moment(startDate).format("ddd MMM D HH:mm");
+		var stopText=moment(stopDate).format("HH:mm");
+		return startText+'-'+stopText
+	}
+	
+	
 	function showProgrammes(selector) {
 		var programmesList=$("#programmesList");
 		programmesList.empty(); 
-		var selectedProgrammes=programmes(selector).limit(100).order("title logical, start, channel").get(); // TODO: remove development limit
-		console.log(selectedProgrammes.length+' programmes found (limited at 100)');
-		
+		var selectedProgrammes=programmes(selector).limit(300).order("title logical, start, channel").get(); // TODO: remove development limit
+		console.log(selectedProgrammes.length+' programmes found (limited at 300)');
+		var $el=programmesList;
+		var listView=new infinity.ListView($el);
 
 		$.each(selectedProgrammes, function(i,c) {
 			var programmeId=c._id;
-			programmesList.append($('<li>').attr('class','programmeItem').append($('<a>').attr('href','#').attr('data-programmeId',programmeId).append(c.title+' '+c.channel+' '+c.start)));
+			// test of date formatter
+			
+			listView.append($('<li>').attr('class','programmeItem').append($('<a>').attr('href','#').attr('data-programmeId',programmeId).append(c.title+' '+c.channel+' '+formatStartStop(c.start, c.stop))));
 
 			
 		});
@@ -113,12 +124,13 @@ $(document).ready(function(){
 		
 	}
 	function showProgrammeModal(programmeId) {
-		console.log(programmeId);
+		//console.log(programmeId);
 		var programme=programmes({_id:programmeId}).first();
-		console.log (programme.desc);
+		//console.log (programme.desc);
 		$("#programmeModal h3").text(programme.title);
-		$("#programmeModal p").text(programme.desc);
-
+		$("#programmeModal #modalDesc").text(programme.desc);
+		$("#programmeModal #modalDateTime").text(formatStartStop(programme.start, programme.stop));
+		$("#programmeModal #modalChannel").text(programme.channel);
 		$('#programmeModal').modal('show');
 		
 		
@@ -127,9 +139,8 @@ $(document).ready(function(){
 	
 	
 	$('header').on('click', "#refreshBtn", function(e){
-		console.log('reloading');
+		$(this).button('loading');
 		reloadData();
-		console.log('reloaded');			
 	});
 	
 
