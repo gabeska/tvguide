@@ -6,6 +6,7 @@
 var express = require('express'),
   http = require('http'),
   mongoose = require('mongoose'),
+  fs=require('fs');
   path = require('path');
 
 var app = express();
@@ -50,20 +51,25 @@ var HiddenProgramme = mongoose.model("hiddenprogrammes", HiddenProgrammeSchema);
 app.set('port', process.env.PORT || 4000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(express.compress());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'front')));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//app.get('/', routes.index);
 app.get('/', function(req, res) {
+    fs.readFile(__dirname + '/front/index.html', 'utf8', function(err, text){
+        res.send(text);
+    });
+});
+app.get('/api', function(req, res) {
 	var page="<h1>API functions</h1><ul><li>/programmes - get all programmes</li><li>/programmes/channel/name "+
 "- get progs for channel name</li><li>/programmes/genre/name - get programmes in genre name</li>";
 	res.send(page);

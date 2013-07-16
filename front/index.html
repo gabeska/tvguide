@@ -13,15 +13,18 @@
 <div class="container-fluid">
 	<header class="row-fluid">
     	<h1 class="span12">Myguide</h1>
+        <button class="btn btn-danger" id="refreshBtn">Reload</button>
+        <a href="#programmeModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
     </header>
+    
 	<section class="row-fluid">
     	<div class="span2">
             <ul class="nav nav-list" id="channelsList">
             <li class="nav-header">Channels</li>
-            <li><a href="#" class="btn">All</a></li>
-            <li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
-            <li class="channelItem"><a href="#" class="btn">BBC 2</a></li>
-            <li class="channelItem"><a href="#" class="btn">BBC 3</a></li>
+            <li><a href="#" class="btn btn-small">All</a></li>
+            <li class="channelItem"><a href="#" class="btn btn-small">BBC 1</a></li>
+            <li class="channelItem"><a href="#" class="btn btn-small">BBC 2</a></li>
+            <li class="channelItem"><a href="#" class="btn btn-small">BBC 3</a></li>
             </ul>
         </div>
         <div class="span2">
@@ -50,7 +53,20 @@
 
 	<footer class="span12">Bral & Bla</footer>
 
-
+	<div id="programmeModal" class="modal hide" role="dialog">
+    	  <div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    		<h3>Modal header</h3>
+  		</div>
+  		<div class="modal-body">
+    		<p>One fine body…</p>
+  		</div>
+  		<div class="modal-footer">
+    	<a href="#" class="btn" data-dismiss="modal">Close</a>
+    	<a href="#" class="btn btn-primary">Save changes</a>
+  		</div>
+    
+    </div>
 
 </div>
 
