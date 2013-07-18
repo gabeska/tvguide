@@ -3,9 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>MyGuide</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+
+
+<style>
+	
+</style>
+
+
 </head>
 
 <body>
@@ -14,11 +24,23 @@
 	<header class="row-fluid">
     	<h1 class="span12">Myguide</h1>
         <button class="btn btn-danger" id="refreshBtn" data-loading-text="Loading...">Reload</button>
-        <button type="button" class="btn btn-primary" data-toggle="button" id="hideCrapBtn">Hide Crap</button>
+        <div class="btn-group" data-toggle="buttons-radio">
+		  <button type="button" class="btn btn-primary active" id="hideCrapBtn">Hide Crap</button>
+  		  <button type="button" class="btn btn-primary">Show All</button>
+		</div>
+        <div class="btn-group" data-toggle="buttons-radio">
+		  <button type="button" class="btn btn-primary active" id="titleSortBtn">Sort by Title</button>
+  		  <button type="button" class="btn btn-primary">Sort by Time</button>
+		</div>
+        
+        
+        
     </header>
-    
+    <hr>
 	<section class="row-fluid">
     	<div class="span2">
+        	<div>
+            
             <ul class="nav nav-list" id="channelsList">
             <li class="nav-header">Channels</li>
             <li><a href="#" class="btn btn-small">All</a></li>
@@ -26,6 +48,8 @@
             <li class="channelItem"><a href="#" class="btn btn-small">BBC 2</a></li>
             <li class="channelItem"><a href="#" class="btn btn-small">BBC 3</a></li>
             </ul>
+            
+            </div>
         </div>
         <div class="span2">
             <ul class="nav nav-list" id="genresList">
@@ -65,7 +89,7 @@
   		</div>
   		<div class="modal-footer">
     	<a href="#" class="btn" data-dismiss="modal">Close</a>
-        <a href="#" class="btn btn-warning">Hide</a>
+        <a href="#" class="btn btn-warning" id="hideProgramme">Hide</a>
     	<a href="#" class="btn btn-primary">Record</a>
   		</div>
     
@@ -74,7 +98,7 @@
 </div>
 
 
-<script src="scripts/jquery-2.0.3.js"></script>
+<script src="scripts/jquery-2.0.3.min.js"></script>
 <script src="scripts/taffy.js"></script>
 <script src="scripts/bootstrap.js"></script>
 <script src="scripts/moment.min.js"></script>

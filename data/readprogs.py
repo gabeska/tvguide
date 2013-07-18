@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 import datetime
 import pymongo
 import xml.etree.ElementTree as xml
@@ -90,6 +91,14 @@ def updateDB():
     db.genres.insert(categorylist)
     db.channels.remove()
     db.channels.insert(channellist)
+
+
+    #update show field for programmes we don't want to see (based on title)
+    programmesToHide=[p['title'] for p in db.hiddenprogrammes.find()]
+    programmes.update({"title":{"$in":programmesToHide}},{"$set":{"show":False}},multi=True  )
+
+    #24 Kitchen programmes don't have a category
+    programmes.update({"category":"Unknown","channel":"24 Kitchen"},{"$set":{"category":"Educational"}},multi=True)
 
 updateDB()
 
