@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+*.gz
+
+pids
+logs
+results
+
+data/*.xml
+*.min.js
+.DS_Store
+data/vim/
+mongoosesession
+
+ontwerptvguide.txt
+
