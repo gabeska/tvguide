@@ -133,12 +133,17 @@ $(document).ready(function(){
 		});
 		*/
 		var listView=new infinity.ListView(programmesList);
-
+		var showChannel=true;
+		if(selector.channel) {
+		//don't need to show channel if we're filtering on it
+			showChannel=false;
+		
+		}
 		programmes(selector).limit(700).order(sortOrder).each(function (programme,pnumber) {
 				listView.append($('<li>').attr('class','programmeItem')
 					.append($('<a>').attr('href','#').attr('data-programmeId',programme._id)
-					.append(formatStartStop(programme.start, programme.stop)+': '+programme.title+' '+programme.channel)));		
-			
+					.append(formatStartStop(programme.start, programme.stop)+': '+programme.title,showChannel?' ('+programme.channel+')':'')));		
+					//todo use template!
 		});
 		
 		
