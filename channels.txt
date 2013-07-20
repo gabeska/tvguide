@@ -1,0 +1,1287 @@
+[
+   {
+      "guideName": "538",
+      "dreamboxName": "538",
+      "servicereference": "1:0:2:235C:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC 1",
+      "dreamboxName": "BBC 1",
+      "servicereference": "1:0:1:32CB:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC 2",
+      "dreamboxName": "BBC 2",
+      "servicereference": "1:0:1:32CC:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC 4",
+      "dreamboxName": "BBC 4 / CBeebies",
+      "servicereference": "1:0:1:32CA:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC HD",
+      "dreamboxName": "BBC HD",
+      "servicereference": "1:0:19:D8:1:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Cultura 24",
+      "dreamboxName": "Cultura 24",
+      "servicereference": "1:0:1:3D:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Discovery Channel",
+      "dreamboxName": "Discovery Channel",
+      "servicereference": "1:0:1:2EE4:C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Discovery Channel HD",
+      "dreamboxName": "Discovery Channel HD",
+      "servicereference": "1:0:19:EF:16:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Discovery Science",
+      "dreamboxName": "Discovery Science",
+      "servicereference": "1:0:1:FA5:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Discovery World",
+      "dreamboxName": "Discovery World",
+      "servicereference": "1:0:1:FA4:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HISTORY",
+      "dreamboxName": "HISTORY",
+      "servicereference": "1:0:1:1389:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HISTORY HD",
+      "dreamboxName": "HISTORY HD",
+      "servicereference": "1:0:19:1F:1A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Holland Doc 24",
+      "dreamboxName": "Holland Doc 24",
+      "servicereference": "1:0:1:1B70:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "National Geographic Channel",
+      "dreamboxName": "National Geographic Channel",
+      "servicereference": "1:0:1:7D3:2:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "National Geographic Channel HD",
+      "dreamboxName": "National Geographic Channel HD",
+      "servicereference": "1:0:19:4E27:14:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 1",
+      "dreamboxName": "Nederland 1",
+      "servicereference": "1:0:1:1F44:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 2",
+      "dreamboxName": "Nederland 2",
+      "servicereference": "1:0:1:1F45:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 3",
+      "dreamboxName": "Nederland 3",
+      "servicereference": "1:0:1:1F43:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 4",
+      "dreamboxName": "RTL 4",
+      "servicereference": "1:0:1:4A39:13:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 5",
+      "dreamboxName": "RTL 5",
+      "servicereference": "1:0:1:4A3A:13:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Weer en Verkeer",
+      "dreamboxName": "Weer en Verkeer",
+      "servicereference": "1:0:1:520B:15:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Baby TV",
+      "dreamboxName": "Baby TV",
+      "servicereference": "1:0:1:4653:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nick Jr.",
+      "dreamboxName": "Nick Jr.",
+      "servicereference": "1:0:1:41:19:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Zappelin / Zapp 24",
+      "dreamboxName": "Zappelin / Zapp 24",
+      "servicereference": "1:0:1:3E:15:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "één",
+      "dreamboxName": "één",
+      "servicereference": "1:0:1:1773:6:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Canvas",
+      "dreamboxName": "Canvas",
+      "servicereference": "1:0:1:3A9E:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Travel Channel",
+      "dreamboxName": "Travel Channel",
+      "servicereference": "1:0:1:BBF:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "CNBC Europe",
+      "dreamboxName": "CNBC Europe",
+      "servicereference": "1:0:1:2716:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "CNN International",
+      "dreamboxName": "CNN International",
+      "servicereference": "1:0:1:2EE3:C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 1 HD",
+      "dreamboxName": "Nederland 1 HD",
+      "servicereference": "1:0:19:C9:1B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 2 HD",
+      "dreamboxName": "Nederland 2 HD",
+      "servicereference": "1:0:19:CA:1B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nederland 3 HD",
+      "dreamboxName": "Nederland 3 HD",
+      "servicereference": "1:0:19:CB:C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Net 5",
+      "dreamboxName": "Net 5",
+      "servicereference": "1:0:1:1772:6:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Net 5 HD",
+      "dreamboxName": "Net 5 HD",
+      "servicereference": "1:0:19:36B1:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nickelodeon",
+      "dreamboxName": "Nickelodeon",
+      "servicereference": "1:0:1:1B6D:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 5 HD",
+      "dreamboxName": "RTL 5 HD",
+      "servicereference": "1:0:19:CD:1:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 7",
+      "dreamboxName": "RTL 7",
+      "servicereference": "1:0:1:4A3E:13:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 8",
+      "dreamboxName": "RTL 8",
+      "servicereference": "1:0:1:1774:6:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 8 HD",
+      "dreamboxName": "RTL 8 HD",
+      "servicereference": "1:0:19:D2:11:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL Lounge",
+      "dreamboxName": "RTL Lounge",
+      "servicereference": "1:0:1:C5:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "SBS 6",
+      "dreamboxName": "SBS 6",
+      "servicereference": "1:0:1:4A3B:13:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "SBS 6 HD",
+      "dreamboxName": "SBS 6 HD",
+      "servicereference": "1:0:19:CE:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Veronica HD/Disney XD",
+      "dreamboxName": "Veronica HD/Disney XD",
+      "servicereference": "1:0:19:D0:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Comedy Central / Kindernet",
+      "dreamboxName": "Comedy Central / Kindernet",
+      "servicereference": "1:0:1:1775:6:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC 3",
+      "dreamboxName": "BBC 3 / CBBC",
+      "servicereference": "1:0:1:2AF9:B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC World News",
+      "dreamboxName": "BBC World News",
+      "servicereference": "1:0:1:2EE2:C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nat Geo Wild HD",
+      "dreamboxName": "Nat Geo Wild HD",
+      "servicereference": "1:0:19:E0:1A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Comedy Central HD / Kindernet",
+      "dreamboxName": "Comedy Central HD / Kindernet",
+      "servicereference": "1:0:19:F0:B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "101 TV",
+      "dreamboxName": "101 TV",
+      "servicereference": "1:0:1:2F:B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "13TH STREET",
+      "dreamboxName": "13TH STREET",
+      "servicereference": "1:0:1:B7:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "192 TV",
+      "dreamboxName": "192 TV",
+      "servicereference": "1:0:1:4D:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "24 Kitchen",
+      "dreamboxName": "24 Kitchen",
+      "servicereference": "1:0:1:D4:1:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Aljazeera English",
+      "dreamboxName": "Aljazeera English",
+      "servicereference": "1:0:1:791F:1F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Animal Planet HD",
+      "dreamboxName": "Animal Planet HD",
+      "servicereference": "1:0:19:D7:16:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "ARD",
+      "dreamboxName": "ARD",
+      "servicereference": "1:0:1:32C9:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "ARTE",
+      "dreamboxName": "Arte",
+      "servicereference": "1:0:1:BBC:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "AT5",
+      "dreamboxName": "AT5",
+      "servicereference": "1:0:1:1F4:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "ATV Avrupa",
+      "dreamboxName": "ATV Avrupa",
+      "servicereference": "1:0:1:7A:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC Entertainment",
+      "dreamboxName": "BBC Entertainment",
+      "servicereference": "1:0:1:7D4:2:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Best 24",
+      "dreamboxName": "Best 24",
+      "servicereference": "1:0:1:4E28:14:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Boomerang",
+      "dreamboxName": "Boomerang",
+      "servicereference": "1:0:1:4654:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BravaNL",
+      "dreamboxName": "BravaNL",
+      "servicereference": "1:0:1:A1:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Canvas HD",
+      "dreamboxName": "Canvas HD",
+      "servicereference": "1:0:19:F2:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Cartoon Network",
+      "dreamboxName": "Cartoon Network",
+      "servicereference": "1:0:1:7D2:2:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "CBS Reality",
+      "dreamboxName": "CBS Reality",
+      "servicereference": "1:0:1:59DC:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Comedy Central Extra",
+      "dreamboxName": "Comedy Central Extra",
+      "servicereference": "1:0:1:D9:11:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Comedy Central Family",
+      "dreamboxName": "Comedy Central Family",
+      "servicereference": "1:0:1:B3:16:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Crime & Investigation Network",
+      "dreamboxName": "Crime & Investigation Network",
+      "servicereference": "1:0:1:BBB:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Disney Channel",
+      "dreamboxName": "Disney Channel",
+      "servicereference": "1:0:1:D5:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Disney Junior",
+      "dreamboxName": "Disney Junior",
+      "servicereference": "1:0:1:DC:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Disney XD",
+      "dreamboxName": "Disney XD",
+      "servicereference": "1:0:1:D6:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "E! Entertainment",
+      "dreamboxName": "E! Entertainment",
+      "servicereference": "1:0:1:4E23:14:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "ESPN AMERICA",
+      "dreamboxName": "ESPN AMERICA",
+      "servicereference": "1:0:1:32CE:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Etalagekanaal",
+      "dreamboxName": "Etalagekanaal",
+      "servicereference": "1:0:1:6979:1B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Euro D",
+      "dreamboxName": "Euro D",
+      "servicereference": "1:0:1:79:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Euro Star",
+      "dreamboxName": "Euro Star",
+      "servicereference": "1:0:1:7D:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Euronews",
+      "dreamboxName": "Euronews",
+      "servicereference": "1:0:1:61:2:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eurosport",
+      "dreamboxName": "Eurosport",
+      "servicereference": "1:0:1:2EE7:C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eurosport 2",
+      "dreamboxName": "Eurosport 2",
+      "servicereference": "1:0:1:BB9:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eurosport 2 HD",
+      "dreamboxName": "Eurosport 2 HD",
+      "servicereference": "1:0:19:F3:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eurosport HD",
+      "dreamboxName": "Eurosport HD",
+      "servicereference": "1:0:19:A6:19:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eventkanaal",
+      "dreamboxName": "Eventkanaal",
+      "servicereference": "1:0:1:3E9:1:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Family 7",
+      "dreamboxName": "Family 7",
+      "servicereference": "1:0:1:B4:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Action",
+      "dreamboxName": "Film1 Action",
+      "servicereference": "1:0:1:B2:16:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Family",
+      "dreamboxName": "Film1 Family",
+      "servicereference": "1:0:1:3E84:10:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Premiere",
+      "dreamboxName": "Film1 Premiere",
+      "servicereference": "1:0:1:3E83:10:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Premiere HD",
+      "dreamboxName": "Film1 Premiere HD",
+      "servicereference": "1:0:19:2713:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Series",
+      "dreamboxName": "Film1 Series",
+      "servicereference": "1:0:1:3E82:10:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Film1 Sundance",
+      "dreamboxName": "Film1 Sundance",
+      "servicereference": "1:0:1:3E85:10:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "FOXlife",
+      "dreamboxName": "FOXlife",
+      "servicereference": "1:0:1:C4:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "FOXlife HD",
+      "dreamboxName": "FOXlife HD",
+      "servicereference": "1:0:19:DF:11:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "France 2",
+      "dreamboxName": "France 2",
+      "servicereference": "1:0:1:BA:1A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "GoedTV",
+      "dreamboxName": "GoedTV",
+      "servicereference": "1:0:1:6D63:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO",
+      "dreamboxName": "HBO",
+      "servicereference": "1:0:1:E7:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO 2",
+      "dreamboxName": "HBO 2",
+      "servicereference": "1:0:1:E8:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO 2 HD",
+      "dreamboxName": "HBO 2 HD",
+      "servicereference": "1:0:19:EB:1D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO 3",
+      "dreamboxName": "HBO 3",
+      "servicereference": "1:0:1:E9:14:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO 3 HD",
+      "dreamboxName": "HBO 3 HD",
+      "servicereference": "1:0:19:EC:1D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "HBO HD",
+      "dreamboxName": "HBO HD",
+      "servicereference": "1:0:19:EA:1D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Humor TV 24",
+      "dreamboxName": "Humor TV 24",
+      "servicereference": "1:0:1:26:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Investigation Discovery",
+      "dreamboxName": "Investigation Discovery",
+      "servicereference": "1:0:1:FA6:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "JimJam",
+      "dreamboxName": "JimJam",
+      "servicereference": "1:0:1:AB:B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Journaal 24",
+      "dreamboxName": "Journaal 24",
+      "servicereference": "1:0:1:2711:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Ketnet/OP12",
+      "dreamboxName": "Ketnet/OP12",
+      "servicereference": "1:0:1:ED:1A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Kral TV",
+      "dreamboxName": "Kral TV",
+      "servicereference": "1:0:1:6D62:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "LIG TV",
+      "dreamboxName": "LIG TV",
+      "servicereference": "1:0:1:7F:1F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Lite TV",
+      "dreamboxName": "Lite TV",
+      "servicereference": "1:0:1:45:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Lokale Omroep ",
+      "dreamboxName": "Lokale Omroep ",
+      "servicereference": "1:0:1:384:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MAX",
+      "dreamboxName": "MAX",
+      "servicereference": "1:0:1:791A:1F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Mezzo",
+      "dreamboxName": "Mezzo",
+      "servicereference": "1:0:1:50:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MGM Movie Channel",
+      "dreamboxName": "MGM Movie Channel",
+      "servicereference": "1:0:1:1F42:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Motors TV",
+      "dreamboxName": "Motors TV",
+      "servicereference": "1:0:1:1B6C:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MTV",
+      "dreamboxName": "MTV",
+      "servicereference": "1:0:1:BC3:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MTV Brand New",
+      "dreamboxName": "MTV Brand New",
+      "servicereference": "1:0:1:49:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MTV Live HD",
+      "dreamboxName": "MTV Live HD",
+      "servicereference": "1:0:19:E1:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "MTV Music 24",
+      "dreamboxName": "MTV Music 24",
+      "servicereference": "1:0:1:4B:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nat Geo Wild",
+      "dreamboxName": "Nat Geo Wild",
+      "servicereference": "1:0:1:5DC1:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NDR",
+      "dreamboxName": "NDR",
+      "servicereference": "1:0:1:9C5:19:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NENS-TV",
+      "dreamboxName": "NENS-TV",
+      "servicereference": "1:0:1:190:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nick Hits",
+      "dreamboxName": "Nick Hits",
+      "servicereference": "1:0:1:43:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Nick Toons",
+      "dreamboxName": "Nick Toons",
+      "servicereference": "1:0:1:42:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NostalgieNet",
+      "dreamboxName": "NostalgieNet",
+      "servicereference": "1:0:1:3A:16:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Omroep Brabant TV",
+      "dreamboxName": "Omroep Brabant TV",
+      "servicereference": "1:0:1:95:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Omroep Zeeland",
+      "dreamboxName": "Omroep Zeeland",
+      "servicereference": "1:0:1:8C:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "OUTTV",
+      "dreamboxName": "OUTTV",
+      "servicereference": "1:0:1:B6:19:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "PassieTV/Dusk!",
+      "dreamboxName": "PassieTV/Dusk!",
+      "servicereference": "1:0:1:8B:15:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Pebble TV",
+      "dreamboxName": "Pebble TV",
+      "servicereference": "1:0:1:3E81:10:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Politiek 24",
+      "dreamboxName": "Politiek 24",
+      "servicereference": "1:0:1:62:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Rai Uno",
+      "dreamboxName": "Rai Uno",
+      "servicereference": "1:0:1:1F46:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 4 HD",
+      "dreamboxName": "RTL 4 HD",
+      "servicereference": "1:0:19:CC:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL 7 HD",
+      "dreamboxName": "RTL 7 HD",
+      "servicereference": "1:0:19:CF:3:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL Crime",
+      "dreamboxName": "RTL Crime",
+      "servicereference": "1:0:1:DA:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL Telekids",
+      "dreamboxName": "RTL Telekids",
+      "servicereference": "1:0:1:F5:2:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTL Television",
+      "dreamboxName": "RTL Television",
+      "servicereference": "1:0:1:5DC6:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTV Amstelveen TV",
+      "dreamboxName": "RTV Amstelveen TV",
+      "servicereference": "1:0:1:12C:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTV Katwijk",
+      "dreamboxName": "RTV Katwijk",
+      "servicereference": "1:0:1:C8:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RTV Utrecht",
+      "dreamboxName": "RTV Utrecht",
+      "servicereference": "1:0:1:93:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Sat. 1",
+      "dreamboxName": "Sat. 1",
+      "servicereference": "1:0:1:59DA:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Show TV",
+      "dreamboxName": "Show TV",
+      "servicereference": "1:0:1:7E:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "SLAM!TV",
+      "dreamboxName": "SLAM!TV",
+      "servicereference": "1:0:1:697A:1B:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Sport1 Select HD",
+      "dreamboxName": "Sport1 Select HD",
+      "servicereference": "1:0:19:5209:15:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Sport1 Voetbal HD",
+      "dreamboxName": "Sport1 Voetbal HD",
+      "servicereference": "1:0:19:F6:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Syfy Universal",
+      "dreamboxName": "Syfy Universal",
+      "servicereference": "1:0:1:B8:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TCM",
+      "dreamboxName": "TCM",
+      "servicereference": "1:0:1:3A9F:F:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TGRT EU",
+      "dreamboxName": "TGRT EU",
+      "servicereference": "1:0:1:7B:1C:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TLC",
+      "dreamboxName": "TLC",
+      "servicereference": "1:0:1:FA2:4:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV 5 Monde Europe",
+      "dreamboxName": "TV 5 Monde Europe",
+      "servicereference": "1:0:1:59D9:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV Gelderland",
+      "dreamboxName": "TV Gelderland",
+      "servicereference": "1:0:1:94:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV Noord Holland",
+      "dreamboxName": "TV Noord Holland",
+      "servicereference": "1:0:1:97:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV Oranje",
+      "dreamboxName": "TV Oranje",
+      "servicereference": "1:0:1:2714:A:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV Rijnmond",
+      "dreamboxName": "TV Rijnmond",
+      "servicereference": "1:0:1:98:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TV West",
+      "dreamboxName": "TV West",
+      "servicereference": "1:0:1:99:1F5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "TVE",
+      "dreamboxName": "TVE",
+      "servicereference": "1:0:1:4E24:14:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Unity TV",
+      "dreamboxName": "Unity TV",
+      "servicereference": "1:0:1:64:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Veronica/Disney XD",
+      "dreamboxName": "Veronica/Disney XD",
+      "servicereference": "1:0:1:1771:6:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "VH-1",
+      "dreamboxName": "VH-1",
+      "servicereference": "1:0:1:4657:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "VH-1 Classic",
+      "dreamboxName": "VH-1 Classic",
+      "servicereference": "1:0:1:59E0:17:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "WDR",
+      "dreamboxName": "WDR",
+      "servicereference": "1:0:1:1B6E:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "ZDF",
+      "dreamboxName": "ZDF",
+      "servicereference": "1:0:1:4659:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Zenderoverzicht",
+      "dreamboxName": "Zenderoverzicht",
+      "servicereference": "1:0:19:F4:8:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Ziggo TV",
+      "dreamboxName": "Ziggo TV",
+      "servicereference": "1:0:1:2329:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Ziggo Xite",
+      "dreamboxName": "Ziggo Xite",
+      "servicereference": "1:0:1:EE:12:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "één HD",
+      "dreamboxName": "één HD",
+      "servicereference": "1:0:19:F1:D:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "(...)",
+      "dreamboxName": "(...)",
+      "servicereference": "1:0:0:1518:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Panasonic",
+      "dreamboxName": "Panasonic",
+      "servicereference": "1:0:1:1B61:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Rock 'n' Roll",
+      "dreamboxName": "Rock 'n' Roll",
+      "servicereference": "1:0:2:3701:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "All Day Party",
+      "dreamboxName": "All Day Party",
+      "servicereference": "1:0:2:3709:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Hits",
+      "dreamboxName": "XLnt Hits",
+      "servicereference": "1:0:2:370A:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Nederpop Gold",
+      "dreamboxName": "XLnt Nederpop Gold",
+      "servicereference": "1:0:2:370B:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Nederpop",
+      "dreamboxName": "XLnt Nederpop",
+      "servicereference": "1:0:2:370C:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Nostalgie",
+      "dreamboxName": "XLnt Nostalgie",
+      "servicereference": "1:0:2:370D:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt PiratenHits",
+      "dreamboxName": "XLnt PiratenHits",
+      "servicereference": "1:0:2:370E:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Easy Listening",
+      "dreamboxName": "XLnt Easy Listening",
+      "servicereference": "1:0:2:370F:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Oldies",
+      "dreamboxName": "XLnt Oldies",
+      "servicereference": "1:0:2:3710:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Today's Pop",
+      "dreamboxName": "XLnt Today's Pop",
+      "servicereference": "1:0:2:3711:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Comedy",
+      "dreamboxName": "XLnt Comedy",
+      "servicereference": "1:0:2:3712:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Dance Classics",
+      "dreamboxName": "XLnt Dance Classics",
+      "servicereference": "1:0:2:3714:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Sinterklaas",
+      "dreamboxName": "XLnt Sinterklaas",
+      "servicereference": "1:0:2:3716:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Lokale Radio",
+      "dreamboxName": "Lokale Radio",
+      "servicereference": "1:0:2:13EC:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio Amstelveen ",
+      "dreamboxName": "Radio Amstelveen ",
+      "servicereference": "1:0:2:1450:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 6",
+      "dreamboxName": "Radio 6",
+      "servicereference": "1:0:2:235A:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 10 Gold",
+      "dreamboxName": "Radio 10 Gold",
+      "servicereference": "1:0:2:235B:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Sky Radio",
+      "dreamboxName": "Sky Radio",
+      "servicereference": "1:0:2:235F:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio Veronica",
+      "dreamboxName": "Radio Veronica",
+      "servicereference": "1:0:2:2360:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Wild FM Hitradio",
+      "dreamboxName": "Wild FM Hitradio",
+      "servicereference": "1:0:2:2361:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 5",
+      "dreamboxName": "Radio 5",
+      "servicereference": "1:0:2:2362:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC Radio 1",
+      "dreamboxName": "BBC Radio 1",
+      "servicereference": "1:0:2:2363:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC Radio 2",
+      "dreamboxName": "BBC Radio 2",
+      "servicereference": "1:0:2:2364:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC Radio 3",
+      "dreamboxName": "BBC Radio 3",
+      "servicereference": "1:0:2:2365:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BBC World Service",
+      "dreamboxName": "BBC World Service",
+      "servicereference": "1:0:2:2366:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Omrop Fryslân radio",
+      "dreamboxName": "Omrop Fryslân radio",
+      "servicereference": "1:0:2:26F:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RADIONL",
+      "dreamboxName": "RADIONL",
+      "servicereference": "1:0:2:27A:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Waterstad FM",
+      "dreamboxName": "Waterstad FM",
+      "servicereference": "1:0:2:27B:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "100% NL",
+      "dreamboxName": "100% NL",
+      "servicereference": "1:0:2:27F:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Unity FM",
+      "dreamboxName": "Unity FM",
+      "servicereference": "1:0:2:1388:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Arrow Classic Rock",
+      "dreamboxName": "Arrow Classic Rock",
+      "servicereference": "1:0:2:1B8A:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "BNR Nieuwsradio",
+      "dreamboxName": "BNR Nieuwsradio",
+      "servicereference": "1:0:2:1B8B:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Classic FM",
+      "dreamboxName": "Classic FM",
+      "servicereference": "1:0:2:1B8C:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "FunX",
+      "dreamboxName": "FunX",
+      "servicereference": "1:0:2:1B8D:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Slam! FM",
+      "dreamboxName": "Slam! FM",
+      "servicereference": "1:0:2:1B8E:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NDR 2",
+      "dreamboxName": "NDR 2",
+      "servicereference": "1:0:2:28F:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Q-Music",
+      "dreamboxName": "Q-Music",
+      "servicereference": "1:0:2:1B8F:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NDR Kultur",
+      "dreamboxName": "NDR Kultur",
+      "servicereference": "1:0:2:290:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 1",
+      "dreamboxName": "Radio 1",
+      "servicereference": "1:0:2:1B90:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 2",
+      "dreamboxName": "Radio 2",
+      "servicereference": "1:0:2:1B91:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "3FM",
+      "dreamboxName": "3FM",
+      "servicereference": "1:0:2:1B92:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio 4",
+      "dreamboxName": "Radio 4",
+      "servicereference": "1:0:2:1B93:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio France International",
+      "dreamboxName": "Radio France International",
+      "servicereference": "1:0:2:1B94:7:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "90s",
+      "dreamboxName": "90s",
+      "servicereference": "1:0:2:2A5:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Rewind",
+      "dreamboxName": "Rewind",
+      "servicereference": "1:0:2:2B2:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NENS Radio",
+      "dreamboxName": "NENS Radio",
+      "servicereference": "1:0:2:14B4:64:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Drive",
+      "dreamboxName": "Drive",
+      "servicereference": "1:0:2:2B8:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Eins Live",
+      "dreamboxName": "Eins Live",
+      "servicereference": "1:0:2:13BA:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "WDR 2",
+      "dreamboxName": "WDR 2",
+      "servicereference": "1:0:2:13BB:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "WDR 4",
+      "dreamboxName": "WDR 4",
+      "servicereference": "1:0:2:13BD:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "WDR 5",
+      "dreamboxName": "WDR 5",
+      "servicereference": "1:0:2:13BE:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RNE Radio",
+      "dreamboxName": "RNE Radio",
+      "servicereference": "1:0:2:13BF:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "The Alternative",
+      "dreamboxName": "The Alternative",
+      "servicereference": "1:0:2:2C0:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "L1 Radio",
+      "dreamboxName": "L1 Radio",
+      "servicereference": "1:0:2:13C0:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio Decibel",
+      "dreamboxName": "Radio Decibel",
+      "servicereference": "1:0:2:13C2:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "WDR 3",
+      "dreamboxName": "WDR 3",
+      "servicereference": "1:0:2:13C3:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Ujala Radio",
+      "dreamboxName": "Ujala Radio",
+      "servicereference": "1:0:2:13C4:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "RAI Radio 1",
+      "dreamboxName": "RAI Radio 1",
+      "servicereference": "1:0:2:13C5:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio West",
+      "dreamboxName": "Radio West",
+      "servicereference": "1:0:2:13C6:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio M Utrecht",
+      "dreamboxName": "Radio M Utrecht",
+      "servicereference": "1:0:2:13C7:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Omroep Brabant Radio",
+      "dreamboxName": "Omroep Brabant Radio",
+      "servicereference": "1:0:2:13C8:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio Rijnmond",
+      "dreamboxName": "Radio Rijnmond",
+      "servicereference": "1:0:2:13C9:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Radio Noord-Holland",
+      "dreamboxName": "Radio Noord-Holland",
+      "servicereference": "1:0:2:13CA:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Tweede Kamerlijn",
+      "dreamboxName": "Tweede Kamerlijn",
+      "servicereference": "1:0:2:13CB:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Sublime FM",
+      "dreamboxName": "Sublime FM",
+      "servicereference": "1:0:2:13CC:5:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Efteling Radio",
+      "dreamboxName": "Efteling Radio",
+      "servicereference": "1:0:2:2CD:9:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Dance",
+      "dreamboxName": "XLnt Dance",
+      "servicereference": "1:0:2:2CF:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Lounge",
+      "dreamboxName": "XLnt Lounge",
+      "servicereference": "1:0:2:2D0:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Salsa",
+      "dreamboxName": "XLnt Salsa",
+      "servicereference": "1:0:2:2D1:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Alternative Rock",
+      "dreamboxName": "XLnt Alternative Rock",
+      "servicereference": "1:0:2:2D2:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Classic Rock",
+      "dreamboxName": "XLnt Classic Rock",
+      "servicereference": "1:0:2:2D3:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Jazz",
+      "dreamboxName": "XLnt Jazz",
+      "servicereference": "1:0:2:2D4:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Schlager",
+      "dreamboxName": "XLnt Schlager",
+      "servicereference": "1:0:2:2D5:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt R&B",
+      "dreamboxName": "XLnt R&B",
+      "servicereference": "1:0:2:2D6:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Musical",
+      "dreamboxName": "XLnt Musical",
+      "servicereference": "1:0:2:2D7:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "XLnt Kleuterliedjes",
+      "dreamboxName": "XLnt Kleuterliedjes",
+      "servicereference": "1:0:2:2D8:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "NDR 1",
+      "dreamboxName": "NDR 1",
+      "servicereference": "1:0:2:2DA:18:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "80s",
+      "dreamboxName": "80s",
+      "servicereference": "1:0:2:36E3:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Christmas Channel",
+      "dreamboxName": "Christmas Channel",
+      "servicereference": "1:0:2:36E4:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Silk (Love Songs)",
+      "dreamboxName": "Silk (Love Songs)",
+      "servicereference": "1:0:2:36E5:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Ultimate Urban",
+      "dreamboxName": "Ultimate Urban",
+      "servicereference": "1:0:2:36E6:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Classical Greats",
+      "dreamboxName": "Classical Greats",
+      "servicereference": "1:0:2:36E7:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Rock Anthems",
+      "dreamboxName": "Rock Anthems",
+      "servicereference": "1:0:2:36E8:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Head bangers",
+      "dreamboxName": "Head bangers",
+      "servicereference": "1:0:2:36EB:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "70s",
+      "dreamboxName": "70s",
+      "servicereference": "1:0:2:36EC:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Reggae",
+      "dreamboxName": "Reggae",
+      "servicereference": "1:0:2:36F2:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Blues",
+      "dreamboxName": "Blues",
+      "servicereference": "1:0:2:36F5:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Chillout",
+      "dreamboxName": "Chillout",
+      "servicereference": "1:0:2:36F6:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Hot Country",
+      "dreamboxName": "Hot Country",
+      "servicereference": "1:0:2:36F7:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Cocktail Lounge",
+      "dreamboxName": "Cocktail Lounge",
+      "servicereference": "1:0:2:36F9:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Classical Orchestral",
+      "dreamboxName": "Classical Orchestral",
+      "servicereference": "1:0:2:36FD:E:1F4:FFFF0000:0:0:0:"
+   },
+   {
+      "guideName": "Classical Calm",
+      "dreamboxName": "Classical Calm",
+      "servicereference": "1:0:2:36FE:E:1F4:FFFF0000:0:0:0:"
+   }
+]
