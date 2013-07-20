@@ -6,8 +6,9 @@
 var express = require('express'),
   http = require('http'),
   mongoose = require('mongoose'),
-  fs=require('fs');
-  path = require('path');
+  fs=require('fs'),
+  path = require('path'),
+  dreambox = require('./dreambox');
 
 var app = express();
 
@@ -154,6 +155,26 @@ app.get( '/programmes/find/:query', function( request, response ) {
 	});
 });
 
+//todo: add recording to database en show status
+app.post('/recordprogramme', function( req, res ) {
+	var b=req.body;
+	var p = {
+		title: b.title,
+		start: b.start,
+		stop: b.stop,
+		channel: b.channel,
+		desc: b.desc
+		
+	};
+	
+	console.log('adding timer for: '+p);
+	
+	dreambox.addTimer(p.channel,p.start,p.stop, p.title, p.desc); // todo: add callback to handle status
+	
+	//todo: add programme to recordings collection 
+	//and show recordings somewhere
+});
+
 app.post('/hideprogramme', function( req, res) {
 	var hiddenprogramme = new HiddenProgramme({title:req.body.title});
 	hiddenprogramme.save( function(err) {
@@ -164,7 +185,7 @@ app.post('/hideprogramme', function( req, res) {
 			Programmes.update(query,{show:false},{multi:true}, function (err, numberAffected, raw) {
 				if (err) return handleError(err);
 				console.log('The number of updated documents was %d', numberAffected);
-				console.log('The raw response from Mongo was ', raw);
+				//console.log('The raw response from Mongo was ', raw);
 			});
 		} else {
 			return console.log(err);
@@ -215,6 +236,13 @@ app.get('/genres', function(req, res){
 			res.json(result);
 		});
 });
+
+// init dreambox PVR
+dreambox.readChannelMap('channels.txt');
+
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

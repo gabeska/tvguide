@@ -172,7 +172,6 @@ $(document).ready(function(){
 	
 		
 	$('#programmeModal').on('click','#hideProgramme', function(e) {
-			console.log('click');
 			var programmeId=$('#programmeModal').attr('data-programmeId');
 			var programme=programmes({_id:programmeId}).first();
 			if (confirm('hide programme '+programme.title+'?')) {
@@ -181,6 +180,18 @@ $(document).ready(function(){
 				$("#programmeModal").modal('hide');
 			}
 
+
+	});
+	
+	$('#programmeModal').on('click','#recordProgramme', function(e) {
+			console.log('record click');
+			var programmeId=$('#programmeModal').attr('data-programmeId');
+			var programme=programmes({_id:programmeId}).first();
+			//console.log(programme.desc);
+			if (confirm('record this programme '+programme.title+'?')) {
+				recordProgramme(programme);
+				$("#programmeModal").modal('hide');
+			}
 
 	});
 	
@@ -198,6 +209,27 @@ $(document).ready(function(){
 		}
 		
 	}
+	
+	function recordProgramme(programme) {
+		//var programme=programmes({_id:programmeId}).first();
+		
+			var programmeDetails = {
+				title: programme.title,
+				start: programme.start,
+				stop: programme.stop,
+				channel: programme.channel,
+				desc: programme.desc	
+				
+			};
+
+			$.post(minimacURL+'recordprogramme',programmeDetails, function(data) {
+				console.log(data);
+			});
+	
+	
+	}
+	
+	
 	function getProgrammesSortOrder() {
 		if($("#titleSortBtn").hasClass('active')) {
 			return	"title logical, start, channel";

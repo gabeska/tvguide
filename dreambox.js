@@ -21,7 +21,7 @@ var doRequest = function (verb, subject, callback) {
 	restler.get(url,options).once('success', function(data,response) {
 		var retrievedData=data.toString();
 	
-		console.log('status: '+response.statusCode);
+		console.log('dreambox request status: '+response.statusCode);
 		var parsedData=JSON.parse(retrievedData);
 		
 		if(callback) {
@@ -39,10 +39,9 @@ var setAddress = function (dbURL) {
 var retrieveChannels = function() {
 	console.log('retrieveChannels');
 	doRequest("getallservices","",function(data) {
-		console.log('getallservices callback'); 
 		for(var b = 0; b<data.services.length;b++) {
 			var bouquet = data.services[b];
-			console.log('bouquet: '+bouquet.servicename);
+			//console.log('bouquet: '+bouquet.servicename);
 			var channels=bouquet.subservices;
 			for(var i = 0; i< channels.length; i++) {
 				if(channels.indexOf(channels[i].servicename==-1)) {
@@ -51,7 +50,7 @@ var retrieveChannels = function() {
 				}
 			}
 		}
-		console.log('channels retrieved');
+		console.log('channels retrieved from Dreambox');
 		//return channelMap;
 		
 	});
@@ -89,16 +88,13 @@ var saveChannelMap = function (outFileName) {
 }
 var readChannelMap = function (inFileName) {
 	var newMap = JSON.parse(fs.readFileSync(inFileName));
-	console.log(newMap);
 	channelMap={};
 	
 	for (var i=0; i< newMap.length; i++) {
 		channelMap[newMap[i].guideName]=newMap[i].servicereference;
 		
 	}
-	
-	console.log(channelMap);
-		
+	console.log('channels retrieved from '+inFileName);	
 }
 
 function zapToChannel() {
@@ -107,7 +103,7 @@ function zapToChannel() {
 
 var addTimer = function (serviceName, startTime, stopTime, title, description) {
 	// schedule a recording on service 'serviceName' from 'startTime' until 'stopTime', with title and description
-	console.log(new Date()+": addtimer: "+serviceName+":"+startTime+"-"+stopTime+":"+title);
+	console.log("addtimer: "+serviceName+":"+startTime+" - "+stopTime+":"+title);
     var sRef=channelMap[serviceName];
 
     if(!sRef||sRef===""){
@@ -115,8 +111,8 @@ var addTimer = function (serviceName, startTime, stopTime, title, description) {
         return;
     }        
 
-	startTime=startTime.getTime()/1000; // dreambox wants times in seconds since 1/1/1970
-	stopTime=stopTime.getTime()/1000;
+	startTime=new Date(startTime).getTime()/1000; // dreambox wants times in seconds since 1/1/1970
+	stopTime=new Date(stopTime).getTime()/1000;
 
 	if(stopTime<startTime){
 	    console.error("error: endtime before starttime");
@@ -132,7 +128,6 @@ var addTimer = function (serviceName, startTime, stopTime, title, description) {
     params+='&description='+encodeURIComponent(description)+'&disabled=0&justplay=0&repeated=0';
 
     doRequest('timeradd?'+params,'',function(response){
-		console.log('timeradd callback');
         console.log(response); 
     });
 	
