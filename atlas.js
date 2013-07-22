@@ -49,23 +49,30 @@ var getWeeklySchedule = function(channelName) {
 			var title=item.title;
 			if (item.container) {
 				title=item.container.title;
-				console.log('container title: '+item.container.title);
+				//console.log('container title: '+item.container.title);
 			}
-				console.log('item title: '+item.title);	
-				console.log('broadcast start: '+item.broadcasts[0].transmission_time);
-				console.log('broadcast stop: '+item.broadcasts[0].transmission_end_time);
-				console.log('description: '+item.description);	
+				//console.log('item title: '+item.title);	
+				//console.log('broadcast start: '+item.broadcasts[0].transmission_time);
+				//console.log('broadcast stop: '+item.broadcasts[0].transmission_end_time);
+				//console.log('description: '+item.description);	
 				
-				//var genre=item.genres[0].replace(/.*\//, '')
+				var genre="Atlas";
+				
+				if (item.genres) {
+					if(item.genres[0]){
+						genre=item.genres[0].replace(/.*\//, '');
+					}
+				}
 				//console.log('genre: '+genre);	
 		
-				console.log('---------');
+				//console.log('---------');
 				var startTime = new Date(item.broadcasts[0].transmission_time);
 				var stopTime = new Date(item.broadcasts[0].transmission_end_time);
 		
-				var genre="Atlas"; // todo map atlas genres to XMLtv genres somewhere
+				//var genre="Atlas"; // todo map atlas genres to XMLtv genres somewhere
 				//	var hiddenprogramme = new HiddenProgramme({title:req.body.title});
-				var programme = new Programme({category:genre, 
+				var programme = new Programme({
+											category:genre, 
 											title:title, 
 											start:startTime,
 											stop:stopTime,
@@ -88,12 +95,15 @@ var getWeeklySchedule = function(channelName) {
 			
 		
 		}); // forEach
-	
+		console.log('update ready for '+ channelName);
 	});
 };
 getWeeklySchedule('BBC 1');
 getWeeklySchedule('BBC 2');
 getWeeklySchedule('BBC 3');
 getWeeklySchedule('BBC 4');
+
+// todo: update 'show' for programmes to should be hidden
+
 
 
