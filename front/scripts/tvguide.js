@@ -165,6 +165,8 @@ $(document).ready(function(){
 		$("#programmeModal #modalDesc").text(programme.desc);
 		$("#programmeModal #modalDateTime").text(formatStartStop(programme.start, programme.stop));
 		$("#programmeModal #modalChannel").text(programme.channel);
+		$("#programmeModal #modalCategory").text(programme.category);
+
 		$('#programmeModal').modal('show');
 	
 		$('#programmeModal').attr("data-programmeId",programmeId);

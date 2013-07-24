@@ -22,26 +22,85 @@ var ProgrammeSchema = new mongoose.Schema({
 //		console.log(this.title,this.desc,this.channel);
 //}
 
+/* 
+	Programmes have multiple genres and subgenres (or no genres at all?)
+	There seems to be at least 1 Atlas genre, of the form:
+	http://ref.atlasapi.org/genres/atlas/news
+	
+	There are also multiple BBC genres, of the form:
+	http://www.bbc.co.uk/programmes/genres/factual/money
+	http://www.bbc.co.uk/programmes/genres/factual/lifestories
+	http://www.bbc.co.uk/programmes/genres/factual
+	
+	All BBC genres can be found at: http://www.bbc.co.uk/programmes/genres(.json)
+	
+	let's start by using the first Atlas genre we find.
+	*/
+	
+var extractGenres = function(genres) {
+	// for the first version, just return a string containing the first Atlas genre, or 'Unknown'
+	genre='Unknown';
+	
+	if (genres.length===0) {
+		return genre;
+	}
+	
+	var atlasGenre='http://ref.atlasapi.org/genres/atlas/'
+	//console.log(genres);
+	for (var i=0; i<genres.length;i++) {
+		//console.log(genres[i]);
+		if (genres[i].indexOf(atlasGenre)==0) {
+			genre=genres[i].replace(/.*\//, '');
+			// capitalize genre
+					
+			genre= genre.charAt(0).toUpperCase()+genre.slice(1);
+			//console.log('atlas genre: '+genre);
+			return genre;
+		}
+		
+	}
+	//console.log('no atlas genre found'); // todo: how often does this happen?
+	
+	return genre;
+	
+};
+	
+
+
 var Programme = mongoose.model("Programme", ProgrammeSchema);
 //Programme.on('error', handleError);
 var schedule={};
+
+
+var clearProgrammes = function() {
+	Programme.remove({source:"Atlas"}, function(err){
+		if(!err) {
+			console.log('programmes cleared')
+		} else {
+			console.log('error: '+err);
+		}
+	});
+
+};
+
+
 var getWeeklySchedule = function(channelName) {
 	var channels={'BBC 1':'cbbh','BBC 2':'cbbG','BBC 3':'cbbP','BBC 4':'cbbQ'};
-	
+	addChannel(channelName);
 	
 	request 
 	.get(at) //NB doesn't work in node REPL (thinks .get is a keyword)
 	.query({from:'now'})
-	.query({to:'now.plus.124h'})
+	.query({to:'now.plus.168h'})
 	.query({publisher:'bbc.co.uk'})
 	.query({annotations:'description,broadcasts,brand_summary,series_summary,extended_description'})
 	.query({channel_id:channels[channelName]})
 	.end(function(res) {
 	
 		var retobject = res.body.schedule[0];
-		console.log (retobject);
-		console.log(res.type);
-		console.log('status: '+res.status);
+		//console.log (retobject);
+		//console.log(res.type);
+		//console.log('status: '+res.status);
 		schedule=retobject.items;
 	
 		var programmes=[];
@@ -57,11 +116,23 @@ var getWeeklySchedule = function(channelName) {
 				//console.log('description: '+item.description);	
 				
 				var genre="Atlas";
-				
+				var BBCgenres=[];
+				//console.log('------');
+				//console.log('genres for programme: '+title);
 				if (item.genres) {
+					/*
 					if(item.genres[0]){
 						genre=item.genres[0].replace(/.*\//, '');
 					}
+					console.log('-------');
+
+					for (var genre in item.genres)
+					{
+						console.log(item.genres[genre]);
+						BBCgenres.push(item.genres[genre].replace(/.*\//, ''));	 
+					};*/
+					genre=extractGenres(item.genres);
+					
 				}
 				//console.log('genre: '+genre);	
 		
@@ -98,12 +169,58 @@ var getWeeklySchedule = function(channelName) {
 		console.log('update ready for '+ channelName);
 	});
 };
+
+var ChannelSchema = new mongoose.Schema({
+	iconURL:String,
+	name:String,
+	id:String
+});
+var Channels = mongoose.model("channels",ChannelSchema);
+
+
+var clearChannels = function() {
+	Channels.remove({source:"Atlas"}, function(err){
+		if(!err) {
+			console.log('channels cleared')
+		} else {
+			console.log('error: '+err);
+		}
+	});
+
+};
+
+var addChannel=function(channelName) {
+	var channel = new Channels({
+		iconURL:'',
+		name:channelName,
+		id:'42'
+		});
+	channel.save(function (err,p) {
+	//console.log('save callback');
+	if(err) {
+			console.log('error in save');
+			console.log(err);	
+		} else {
+				//console.log('saved: '+p);
+		}
+	});
+	
+	
+};
+
+console.log('start');
+clearChannels();
+clearProgrammes();
 getWeeklySchedule('BBC 1');
 getWeeklySchedule('BBC 2');
 getWeeklySchedule('BBC 3');
 getWeeklySchedule('BBC 4');
 
 // todo: update 'show' for programmes to should be hidden
+//var programmesToHide = hiddenProgrammes.find();
 
+
+
+console.log('end');
 
 

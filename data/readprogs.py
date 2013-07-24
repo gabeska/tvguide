@@ -25,7 +25,7 @@ def readXMLguide(filename):
         else:
             iconURL=icon.get('src')
 
-        ch={'name':name,'id':id, 'iconURL':iconURL}
+        ch={'name':name,'id':id, 'iconURL':iconURL, 'source':'XMLtv'}
         channellist.append(ch)
         
 
@@ -62,7 +62,7 @@ def readXMLguide(filename):
         #for cat in categories:
         #    categoryset.add(cat)
         
-        prog={'title':title,'start':start,'stop':stop,'channel':channel,'desc':desc,'category':category, 'show':True}
+        prog={'title':title,'start':start,'stop':stop,'channel':channel,'desc':desc,'category':category, 'show':True,'source':'XMLtv'}
         
         programmelist.append(prog)
 
@@ -85,11 +85,11 @@ def updateDB():
     #print categorylist
 
 
-    programmes.remove()
+    programmes.remove({"source":"XMLtv"})
     programmes.insert(programmelist)
     db.genres.remove()
     db.genres.insert(categorylist)
-    db.channels.remove()
+    db.channels.remove({"source":"XMLtv"})
     db.channels.insert(channellist)
 
 
