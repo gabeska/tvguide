@@ -129,6 +129,7 @@ var addTimer = function (serviceName, startTime, stopTime, title, description) {
 
     doRequest('timeradd?'+params,'',function(response){
         console.log(response); 
+		return response;
     });
 	
 

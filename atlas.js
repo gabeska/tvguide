@@ -6,7 +6,7 @@ var at = 'http://atlas.metabroadcast.com/3.0/schedule.json'
 
 mongoose.connect("mongodb://localhost/myguide");
 
-
+//todo: move these to a central file!
 var ProgrammeSchema = new mongoose.Schema({
 	category:{type:String, index:true},
 	title: {type:String,index:true},
@@ -15,9 +15,17 @@ var ProgrammeSchema = new mongoose.Schema({
 	channel: {type:String,index:true},
 	desc: String,
 	show: Boolean,
+	uri: String,
 	source: String
 
 });
+
+var HiddenProgrammeSchema = new mongoose.Schema({
+	title:String
+});
+var HiddenProgramme = mongoose.model("hiddenprogrammes", HiddenProgrammeSchema);
+
+
 //ProgrammeSchema.methods.log = function () {
 //		console.log(this.title,this.desc,this.channel);
 //}
@@ -140,6 +148,11 @@ var getWeeklySchedule = function(channelName) {
 				var startTime = new Date(item.broadcasts[0].transmission_time);
 				var stopTime = new Date(item.broadcasts[0].transmission_end_time);
 		
+				var uri='';
+				if (item.uri) {
+					uri=item.uri;
+				}
+		
 				//var genre="Atlas"; // todo map atlas genres to XMLtv genres somewhere
 				//	var hiddenprogramme = new HiddenProgramme({title:req.body.title});
 				var programme = new Programme({
@@ -150,6 +163,7 @@ var getWeeklySchedule = function(channelName) {
 											channel:channelName,
 											desc:item.description,
 											show:true,
+											uri:uri,
 											source:"Atlas"});
 		
 				//console.log('pre-save');
@@ -166,6 +180,7 @@ var getWeeklySchedule = function(channelName) {
 			
 		
 		}); // forEach
+		hideProgrammes();
 		console.log('update ready for '+ channelName);
 	});
 };
@@ -173,6 +188,7 @@ var getWeeklySchedule = function(channelName) {
 var ChannelSchema = new mongoose.Schema({
 	iconURL:String,
 	name:String,
+	source:String,
 	id:String
 });
 var Channels = mongoose.model("channels",ChannelSchema);
@@ -193,6 +209,7 @@ var addChannel=function(channelName) {
 	var channel = new Channels({
 		iconURL:'',
 		name:channelName,
+		source:"Atlas",
 		id:'42'
 		});
 	channel.save(function (err,p) {
@@ -207,19 +224,35 @@ var addChannel=function(channelName) {
 	
 	
 };
+var hideProgrammes = function () {
+	console.log('hideprogrammes');
+	
+	var progTitles=[];
+	HiddenProgramme.find({},'title').exec(function(err,progs) {
+		for (var i=0;i<progs.length;i++) {
+			progTitles.push(progs[i].title);
+		}
+		//console.dir(progTitles);
 
+		Programme.update({title:{$in: progTitles}},{show:false},{multi:true}, function (err, numberAffected, raw) {
+			if (err) return handleError(err);
+			console.log('The number of updated documents was %d', numberAffected);
+			console.log('The raw response from Mongo was ', raw);
+		});
+	});
+
+};
+
+// todo: use async library
 console.log('start');
+
 clearChannels();
 clearProgrammes();
 getWeeklySchedule('BBC 1');
 getWeeklySchedule('BBC 2');
 getWeeklySchedule('BBC 3');
 getWeeklySchedule('BBC 4');
-
-// todo: update 'show' for programmes to should be hidden
-//var programmesToHide = hiddenProgrammes.find();
-
-
+//hideProgrammes(); // doesn't work here (async), moved to callback
 
 console.log('end');
 

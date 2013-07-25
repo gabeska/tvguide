@@ -169,9 +169,13 @@ app.post('/recordprogramme', function( req, res ) {
 	
 	console.log('adding timer for: '+p);
 	
-	dreambox.addTimer(p.channel,p.start,p.stop, p.title, p.desc); // todo: add callback to handle status
+	dreambox.addTimer(p.channel,p.start,p.stop, p.title, p.desc);
 	
-	//todo: add programme to recordings collection 
+	res.end('recording added (maybe)');
+	// todo: addTimer gets called more than once!?!? why???
+	// todo: add callback to handle db response
+	// todo: get used to async paradigm!
+	//todo: add programme to recordings collection (retrieve from db to avoid syncing problems?) 
 	//and show recordings somewhere
 });
 
