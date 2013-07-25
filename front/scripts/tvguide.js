@@ -104,7 +104,7 @@ $(document).ready(function(){
 	}	
 	
 	function formatStartStop(startDate, stopDate) {
-		var startText=moment(startDate).format("ddd MMM D HH:mm");
+		var startText=moment(startDate).format("dd DD-MM HH:mm");
 		var stopText=moment(stopDate).format("HH:mm");
 		return startText+'-'+stopText
 	}
@@ -182,9 +182,19 @@ $(document).ready(function(){
 		var progData=programmes(selector).limit(1000).select("title","channel","start","stop","category","_id");	
 		//console.dir(progData);
 		
+		
+		var maxTitleLength=50;
+		var windowWidth=$(window).width();
+		if (windowWidth<800) {
+			maxTitleLength=24;
+		}
+		
+		
+		
 		for (var i=0;i<progData.length;i++) {
 			var time=formatStartStop(progData[i][2], progData[i][3]);
-			var title=progData[i][0].slice(0,50); // prevent excessive titles		
+			var title=progData[i][0].slice(0,maxTitleLength); // prevent excessive titles		
+			var channel=progData[i][1].slice(0,15);
 			progData[i]=[title,progData[i][1],time,progData[i][4], progData[i][5]];
 			
 		}
