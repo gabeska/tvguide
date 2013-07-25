@@ -168,6 +168,11 @@ $(document).ready(function(){
 		$("#programmeModal #modalCategory").text(programme.category);
 
 		$('#programmeModal').modal('show');
+		if (programme.uri) {
+			$("#programmeModal #modalUri").show().attr("href",programme.uri);
+		} else {
+			$("#programmeModal #modalUri").hide().attr("#");
+		}
 	
 		$('#programmeModal').attr("data-programmeId",programmeId);
 	}
