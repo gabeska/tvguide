@@ -155,23 +155,27 @@ $(document).ready(function(){
 		 $('#datatable').dataTable( {
         "aaData": [],
 		//"sDom": 'l<"pager"p>t<"pager"p><"info"i><"clear">',
-        "sDom": '<"top"fl<"clear">>rt<"bottom"ip<"clear">>',
+        "sDom": '<"top"f<"clear">>rt<"bottom"i<"clear">>',
 		"aLengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
 		"aoColumns": [
             { "sTitle": "Title" },
-            { "sTitle": "Channel" },
-            { "sTitle": "Time" },
+            { "sTitle": "Time", "iDataSort":5 },
+			{ "sTitle": "Channel" },
             { "sTitle": "Category" },
-			{ "sTitle": "Id"}
+			{ "bVisible": false},
+			{ "bVisible": false},
+			{ "bVisible":false}
         	],
-		"sScrollY":scrollY
+		"sScrollY":scrollY,
+		"bPaginate":false,
+		"aaSorting":[[5, "asc"]]
 
     	} );
 	
 	
 	function setTableData(selector) {
 		var dataTable=$('#datatable').dataTable();
-		
+		dataTable.attr('data-selector',selector);
 		if (shouldHideCrap()) {
 			selector.show=true; // add criterium to search query to not show programmes that have show set to false
 		} 
@@ -179,23 +183,26 @@ $(document).ready(function(){
 		var showCategory=true;
 	
 		
-		var progData=programmes(selector).limit(1000).select("title","channel","start","stop","category","_id");	
+		var progData=programmes(selector).limit(1000).select("title","channel","start","stop","category","_id","desc");	
 		//console.dir(progData);
 		
 		
-		var maxTitleLength=50;
+		var maxTitleLength=60;
+		var maxChannelLength=30;
 		var windowWidth=$(window).width();
 		if (windowWidth<800) {
-			maxTitleLength=24;
+			maxTitleLength=34;
+			maxChannelLength=16;
 		}
+		// todo: do this in CSS
 		
 		
 		
 		for (var i=0;i<progData.length;i++) {
 			var time=formatStartStop(progData[i][2], progData[i][3]);
 			var title=progData[i][0].slice(0,maxTitleLength); // prevent excessive titles		
-			var channel=progData[i][1].slice(0,15);
-			progData[i]=[title,progData[i][1],time,progData[i][4], progData[i][5]];
+			var channel=progData[i][1].slice(0,maxChannelLength);
+			progData[i]=[title,time,channel,progData[i][4], progData[i][5], progData[i][2],progData[i][6]];
 			
 		}
 		//console.dir(progData);
@@ -205,12 +212,12 @@ $(document).ready(function(){
 			if(selector.channel) {
 		//don't need to show channel if we're filtering on it
 			showChannel=false;
-			dataTable.fnSetColumnVis(1,false);
+			dataTable.fnSetColumnVis(2,false);
 			dataTable.fnSetColumnVis(3,true);
 		}
 		if(selector.category) {
 			showCategory=false;
-			dataTable.fnSetColumnVis(1,true);
+			dataTable.fnSetColumnVis(2,true);
 			dataTable.fnSetColumnVis(3,false);
 		}
 		dataTable.fnAddData(progData);
@@ -219,11 +226,13 @@ $(document).ready(function(){
 	
 		/* Click event handler */
 	$('#datatable tbody').off('click');	
-	$('#datatable tbody').on('click', 'tr', function (e) {
+	$('#datatable tbody').on('click', 'tr td:first-child', function (e) {
 		e.preventDefault();
-		var aData = dataTable.fnGetData( this );
-		console.log (aData);
-		var iId = aData[4];
+		//var aData = dataTable.fnGetData( this);
+		var p = this.parentElement;
+		var pData = dataTable.fnGetData( p );
+			
+		var iId = pData[4];
 		console.log('click on row for programme id: '+iId);
 		
 		showProgrammeModal(iId);
@@ -255,6 +264,7 @@ $(document).ready(function(){
 	
 		
 	$('#programmeModal').on('click','#hideProgramme', function(e) {
+			e.preventDefault();
 			var programmeId=$('#programmeModal').attr('data-programmeId');
 			var programme=programmes({_id:programmeId}).first();
 			if (confirm('hide programme '+programme.title+'?')) {
@@ -267,6 +277,7 @@ $(document).ready(function(){
 	});
 	
 	$('#programmeModal').on('click','#recordProgramme', function(e) {
+			e.preventDefault();
 			console.log('record click');
 			var programmeId=$('#programmeModal').attr('data-programmeId');
 			var programme=programmes({_id:programmeId}).first();
