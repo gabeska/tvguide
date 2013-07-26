@@ -1,8 +1,11 @@
 $(document).ready(function(){
 	var programmes=TAFFY();
+	var queries=TAFFY();
 	var genres=[];
 	var channels=[];
 	var minimacURL="http://192.168.178.42:4000/";
+	
+	queries.store("queries");
 	console.log('document ready');
 	
 	
@@ -22,16 +25,78 @@ $(document).ready(function(){
 				genres=data;
 				refreshGenres();
 			});
+			
+			refreshQueries();
 			$("#refreshBtn").button('reset');
 			console.log('finished reloadData');
 		});
 		
 	}
-	function clearPrimaryButtons() {
-		$("#genresList .btn").removeClass('btn-primary');
-		$("#channelsList .btn").removeClass('btn-primary');
+	function clearActive() {
+		$("#genresList li").removeClass('active');
+		$("#channelsList li").removeClass('active');
+		$("#queriesList li").removeClass('active');
+
 	}
 	
+	function refreshQueries() {
+		console.log('refreshQueries');
+		var queriesList=$("#queriesList");
+		queriesList.empty(); 
+		//var icon='<i class="icon-remove pull-right"></i>';
+		queries().each(function (query, qnum) {
+			console.log(query);
+			console.log(query.___id);
+			var icon = $('<i>').attr('class','icon-remove pull-right').attr('data-queryid',query.___id);
+			//	var icon = document.createElement('i');
+
+			queriesList.append(
+				//icon.attr('class','icon-remove pull-right').attr('data-queryId',query.___id);
+				$('<li>').attr('class','queryItem').append(
+						$('<a>').attr('href','#').attr('data-selector',JSON.stringify(query.selector)).append(
+						query.queryName).append(icon)
+					)				
+			);
+			
+		});
+		
+			// button handler
+		console.log('adding button handler');
+		$("#queriesList").off('click','a');	
+		$("#queriesList").on('click', 'a', function(e) {
+			console.log('click');
+			e.preventDefault();
+			clearActive();
+			
+			$(this).parent('li').addClass('active');
+				
+			var selector=$(this).attr('data-selector');
+			console.log("showing programmes for selector "+selector);
+			//showProgrammes(selector);
+			setTableData(JSON.parse(selector));
+		});
+		
+		
+			
+			// button handler
+		$("#queriesList").off('click','i');
+		$("#queriesList").on('click', 'i', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			if (confirm('remove this query?')) {
+			
+				var queryId=$(this).attr('data-queryid');
+				console.log('removing query: '+ queryId);
+	
+				queries(queryId).remove();
+				refreshQueries();
+			
+			}
+			
+	
+		});
+		
+	}
 	
 	function refreshGenres() {
 		var genresList=$("#genresList");
@@ -40,18 +105,19 @@ $(document).ready(function(){
 				//console.log(c);
 				genresList.append(
 					$('<li>').attr('class','genreItem').append(
-						$('<a>').attr('class','btn btn-small').attr('href','#').append(
-						c)
+						$('<a>').attr('href','#').append(c)
 					)
 				);
 	
 			});
 
 			// button handler
-			$("#genresList").on('click', '.btn', function(e) {
+			$("#genresList").off('click');
+			$("#genresList").on('click', 'a', function(e) {
+				console.log('click');
 				e.preventDefault();
-				clearPrimaryButtons();
-				$(this).addClass('btn-primary');
+				clearActive();
+				$(this).parent('li').addClass('active');							
 				
 				var category=this.text;
 				if (category=="All") {
@@ -78,7 +144,7 @@ $(document).ready(function(){
 				
 				channelsList.append(
 					$('<li>').attr('class','channelItem').append(
-						$('<a>').attr('class','btn btn-small').attr('href','#').append(
+						$('<a>').attr('href','#').append(
 							c.name)
 						)
 					);
@@ -87,10 +153,12 @@ $(document).ready(function(){
 	
 			});
 				// button handler
-			$("#channelsList").on('click', '.btn', function(e) {
+			$("#channelsList").off('click');
+			$("#channelsList").on('click', 'a', function(e) {
+				console.log('click');
 				e.preventDefault();
-				clearPrimaryButtons();
-				$(this).addClass('btn-primary');
+				clearActive();
+				$(this).parent('li').addClass('active');
 				var category=this.text;
 				if (category=="All") {
 					var selector={};
@@ -106,7 +174,7 @@ $(document).ready(function(){
 	function formatStartStop(startDate, stopDate) {
 		var startText=moment(startDate).format("dd DD-MM HH:mm");
 		var stopText=moment(stopDate).format("HH:mm");
-		return startText+'-'+stopText
+		return startText+'-'+stopText;
 	}
 	
 	
@@ -120,8 +188,9 @@ $(document).ready(function(){
 		var showChannel=true;
 		if(selector.channel) {
 		//don't need to show channel if we're filtering on it
-			showChannel=false;
-		
+			if(typeof(selector.channel)=="string") {
+				showChannel=false;
+			}
 		}
 		programmes(selector).limit(1000).order(sortOrder).each(function (programme,pnumber) {
 				listView.append($('<li>').attr('class','programmeItem')
@@ -146,29 +215,31 @@ $(document).ready(function(){
 	
 	var windowHeight=$(window).height();
 	var scrollY="700px";
-	
+	var displayLength=25;
 	if (windowHeight<800) {
 		scrollY="440px";
+		displayLength=15;
 	}
 		// init datatable this way?
 
 		 $('#datatable').dataTable( {
         "aaData": [],
-		//"sDom": 'l<"pager"p>t<"pager"p><"info"i><"clear">',
-        "sDom": '<"top"f<"clear">>rt<"bottom"i<"clear">>',
-		"aLengthMenu": [[15, 25, 50, -1], [15, 25, 50, "All"]],
+        "sDom": '<"top"<"clear">>rt<"bottom"if<"clear">>',
 		"aoColumns": [
             { "sTitle": "Title" },
             { "sTitle": "Time", "iDataSort":5 },
 			{ "sTitle": "Channel" },
             { "sTitle": "Category" },
-			{ "bVisible": false},
-			{ "bVisible": false},
-			{ "bVisible":false}
+			{ "bVisible": false}, // id-column
+			{ "bVisible": false}, // start time (for sorting)
+			{ "bVisible":false} // desc
         	],
 		"sScrollY":scrollY,
-		"bPaginate":false,
+		"bScrollCollapse":true,
+		"bScrollInfinite": true,
+		"iDisplayLength":displayLength,
 		"aaSorting":[[5, "asc"]]
+//		"bPaginate":false,
 
     	} );
 	
@@ -191,8 +262,8 @@ $(document).ready(function(){
 		var maxChannelLength=30;
 		var windowWidth=$(window).width();
 		if (windowWidth<800) {
-			maxTitleLength=34;
-			maxChannelLength=16;
+			maxTitleLength=36;
+			maxChannelLength=18;
 		}
 		// todo: do this in CSS
 		
@@ -205,37 +276,35 @@ $(document).ready(function(){
 			progData[i]=[title,time,channel,progData[i][4], progData[i][5], progData[i][2],progData[i][6]];
 			
 		}
-		//console.dir(progData);
-		
 		dataTable.fnClearTable();
-		dataTable.fnSetColumnVis(4,false); // hide _id column
-			if(selector.channel) {
-		//don't need to show channel if we're filtering on it
+	
+		if(selector.channel && typeof(selector.channel)=="string") {
+		//don't need to show channel if we're filtering on a single channel
 			showChannel=false;
-			dataTable.fnSetColumnVis(2,false);
-			dataTable.fnSetColumnVis(3,true);
+			
 		}
-		if(selector.category) {
+		if(selector.category  && typeof(selector.category)=="string") {
 			showCategory=false;
-			dataTable.fnSetColumnVis(2,true);
-			dataTable.fnSetColumnVis(3,false);
 		}
+		
+		dataTable.fnSetColumnVis(2,showChannel);
+		dataTable.fnSetColumnVis(3,showCategory);
+
 		dataTable.fnAddData(progData);
 		dataTable.fnAdjustColumnSizing();
 	
 	
 		/* Click event handler */
-	$('#datatable tbody').off('click');	
-	$('#datatable tbody').on('click', 'tr td:first-child', function (e) {
-		e.preventDefault();
-		//var aData = dataTable.fnGetData( this);
-		var p = this.parentElement;
-		var pData = dataTable.fnGetData( p );
+		$('#datatable tbody').off('click');	
+		$('#datatable tbody').on('click', 'tr td:first-child', function (e) {
+			e.preventDefault();
+			//var aData = dataTable.fnGetData( this);
+			var p = this.parentElement;
+			var pData = dataTable.fnGetData( p );
 			
-		var iId = pData[4];
-		console.log('click on row for programme id: '+iId);
+			var iId = pData[4];
 		
-		showProgrammeModal(iId);
+			showProgrammeModal(iId);
 	} );
 	
 	}
@@ -243,9 +312,7 @@ $(document).ready(function(){
 	
 	
 	function showProgrammeModal(programmeId) {
-		//console.log(programmeId);
 		var programme=programmes({_id:programmeId}).first();
-		//console.log (programme.desc);
 		$("#programmeModal h3").text(programme.title);
 		$("#programmeModal #modalDesc").text(programme.desc);
 		$("#programmeModal #modalDateTime").text(formatStartStop(programme.start, programme.stop));
@@ -289,6 +356,46 @@ $(document).ready(function(){
 
 	});
 	
+	$('#queryModal').on('click','#testQuery', function(e) {
+		e.preventDefault();
+		console.log('test query');
+		var selectorText = $("#selector").val();
+		console.log(selectorText);
+		var selector = JSON.parse(selectorText);
+		console.log(selector);
+		
+		programmes(selector).limit(1000).each(function (programme,pnumber) {
+				console.log(programme);
+
+		});	
+		
+		
+	});
+	
+	$('#queryModal').on('click','#saveQuery', function(e) {
+		e.preventDefault();
+		console.log('save query');
+		var queryName = $("#queryName").val();
+		console.log (queryName);
+		var selectorText = $("#selector").val();
+		console.log(selectorText);
+		var selector = JSON.parse(selectorText);
+		console.log(selector);
+		
+	
+		var query={"queryName":queryName,"selector":selector};
+		queries.merge(query,{key:"queryName"});
+		
+		queries().each(function (query, qnum) {
+			console.log(query);	
+		});
+		
+		$("#queryModal").modal('hide');
+		refreshQueries();
+		
+	});
+	
+	
 	
 	$('header').on('click', "#refreshBtn", function(e){
 		$(this).button('loading');
@@ -328,7 +435,7 @@ $(document).ready(function(){
 		if($("#titleSortBtn").hasClass('active')) {
 			return	"title logical, start, channel";
 		} else {
-			return "start, channel, title logical"
+			return "start, channel, title logical";
 		}
 		
 	}

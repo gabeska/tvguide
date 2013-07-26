@@ -14,7 +14,14 @@
 
 <style>
 	td:first-child {cursor:pointer;}
-	td {font-size:12px;}
+	
+		td {font-size:13px;}
+	@media (min-width: 1025px) {
+		td {font-size:14px;}
+	}
+	
+}
+	
 </style>
 
 
@@ -33,6 +40,7 @@
 		  <button type="button" class="btn btn-primary active" id="hideCrapBtn">Hide Crap</button>
   		  <button type="button" class="btn btn-primary">Show All</button>
 		</div>
+        <button type="button" data-toggle="modal" data-target="#queryModal">Add Query</button>
         <!--
         <div class="btn-group" data-toggle="buttons-radio">
 		  <button type="button" class="btn btn-primary" id="titleSortBtn">Sort by Title</button>
@@ -44,51 +52,76 @@
     </header>
     <hr>
 	<section class="row-fluid">
-    	<div class="span2">
-        	<div>
-            
-            <ul class="nav nav-list" id="channelsList">
-            <li class="nav-header">Channels</li>
-            <li><a href="#" class="btn btn-small">All</a></li>
-            <li class="channelItem"><a href="#" class="btn btn-small">BBC 1</a></li>
-            <li class="channelItem"><a href="#" class="btn btn-small">BBC 2</a></li>
-            <li class="channelItem"><a href="#" class="btn btn-small">BBC 3</a></li>
-            </ul>
-            
-            </div>
-        </div>
-        <div class="span2">
-            <ul class="nav nav-list" id="genresList">
-            <li class="nav-header">Genres</li>
-            <li><a href="#" class="btn">All</a></li>
-            <li class="genreItem"><a href="#" class="btn">Comedy</a></li>
-            <li class="genreItem"><a href="#" class="btn">Film</a></li>
-            <li class="genreItem"><a href="#" class="btn">Documentary</a></li>
-            </ul>
-        </div>
+    	<div class="span3">
+        	<div class="accordion" id="accordion2">
+  				<div class="accordion-group">
+    				<div class="accordion-heading">
+      					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSearch">
+        					Searches
+      					</a>
+    				</div>
+    				<div id="collapseSearch" class="accordion-body collapse in">
+      					<div class="accordion-inner">
+        					<ul class="nav nav-list" id="queriesList">
+                                <li class="queryItem"><a href="#" class="">Films<i class="icon-remove pull-right"></i></a></li>
+            					<li class="queryItem"><a href="#" class="">BBC progs<i class="icon-remove pull-right"></i></a></li>
+            					<li class="queryItem"><a href="#" class="">History<i class="icon-remove pull-right"></i></a></li>
+           				 	</ul>
+      					</div>
+    				</div>
+  			</div>
+  				<div class="accordion-group">
+    				<div class="accordion-heading">
+      					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseChannel">
+        					Channels
+      					</a>
+    				</div>
+    				<div id="collapseChannel" class="accordion-body collapse in">
+      					<div class="accordion-inner">
+        					<ul class="nav nav-list" id="channelsList">
+            					<li><a href="#" class="btn btn-small">All</a></li>
+           					 	<li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
+            					<li class="channelItem"><a href="#" class="btn">BBC 2</a></li>
+            					<li class="channelItem"><a href="#" class="btn">BBC 3</a></li>
+           				 	</ul>
+      					</div>
+    				</div>
+  			</div>
+             <div class="accordion-group">
+    			<div class="accordion-heading">
+      				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseGenre">
+       					 Genres
+      				</a>
+    			</div>
+    			<div id="collapseGenre" class="accordion-body collapse in">
+      				<div class="accordion-inner">
+		            	<ul class="nav nav-list" id="genresList">
+        					<li><a href="#" class="btn">All</a></li>
+          			  		<li class="genreItem"><a href="#" class="btn">Comedy</a></li>
+            				<li class="genreItem"><a href="#" class="btn">Film</a></li>
+            				<li class="genreItem"><a href="#" class="btn">Documentary</a></li>
+            			</ul>
+      				</div>
+    			</div>
+                    
+  			</div>
+  		</div>
+                
+	</div>
 
-<div class="span8">
-<table id="datatable" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-condensed table-bordered" >
 
-</table>
-</div>
+	<div class="span9">
+		<table id="datatable" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-bordered" >
+		</table>
+	</div>
 
-        <!--
-    	<article class="span6" id="programmesArticle">
-            <ul class="nav nav-list" id="programmesList">
-            <li class="nav-header">Programmes</li>
-
-            <li class="programmeItem">Troep</li>
-            <li class="programmeItem">Bagger</li>
-            <li class="programmeItem">Zooi</li>
-            </ul>
-        </article>
-    -->
-    
-    </section>
+	</section>
 <!--
 	<footer class="span12">Bral & Bla</footer>
 -->
+	
+
+</div>
 	<div id="programmeModal" class="modal hide" role="dialog">
     	  <div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -107,9 +140,33 @@
     	<a href="#" class="btn btn-primary" id="recordProgramme">Record</a>
   		</div>
     
+	</div>
+	<div id="queryModal" class="modal hide" role="dialog">
+    	<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">&times;</button>
+    		<h3 id="titleHeader">Edit Search</h3>
+  		</div>
+  		<div class="modal-body">
+        	<form>
+            	<fieldset>
+                	<Label>Call this search:</Label>
+                	<input id="queryName" type="text" placeholder="name for this search.." >
+                    <Label>Selector:</Label>
+                	<textarea id="selector" class="input-block-level" rows="5" placeholder='{"channel":"BBC 2"}'></textarea>
+                </fieldset>
+            </form>
+        	<a href="http://www.taffydb.com/writingqueries" target="_blank">Query Reference</a>
+
+  		</div>
+  		<div class="modal-footer">
+    	<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+        <a href="#" class="btn btn-warning" id="testQuery">Test</a>
+        <a href="#" class="btn btn-warning" id="deleteQuery">Delete Search</a>
+
+    	<a href="#" class="btn btn-primary" id="saveQuery">Save</a>
+  		</div>    
     </div>
 
-</div>
 
 
 <script src="scripts/jquery-2.0.3.min.js"></script>
