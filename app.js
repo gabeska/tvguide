@@ -86,8 +86,8 @@ app.get('/oneprog', function(req,res) {
 
 app.get( '/programmes', function( request, response ) {
 	var now=new Date();
-	var future={stop:{$gt:now}};
-	return Programmes.find( future,function( err, progs ) {
+	var future={stop:{$gt:now},show:true};
+	return Programmes.find(future,function( err, progs ) {
 		if( !err ) {
 			return response.send( progs );
 		} else {
