@@ -10,6 +10,7 @@
     "jade": "*",
     "mongoose":"*",
     "restler":"*",
-    "superagent":"*"
+    "superagent":"*",
+    "async":"*"
   }
 }
