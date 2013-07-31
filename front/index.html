@@ -7,8 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>MyGuide</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+<!--
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+-->
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
 <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
 
 
@@ -56,16 +61,16 @@
         	<div class="accordion" id="accordion2">
   				<div class="accordion-group">
     				<div class="accordion-heading">
-      					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSearch">
-        					Searches
+      					<a id="searchesHeading" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseSearch">
+        					Searches<i class="icon-plus pull-right"></i>
       					</a>
     				</div>
     				<div id="collapseSearch" class="accordion-body collapse in">
       					<div class="accordion-inner">
         					<ul class="nav nav-list" id="queriesList">
-                                <li class="queryItem"><a href="#" class="">Films<i class="icon-remove pull-right"></i></a></li>
-            					<li class="queryItem"><a href="#" class="">BBC progs<i class="icon-remove pull-right"></i></a></li>
-            					<li class="queryItem"><a href="#" class="">History<i class="icon-remove pull-right"></i></a></li>
+                                <li class="queryItem"><a href="#" class="">Films<i class="icon-edit pull-right"></i></a></li>
+            					<li class="queryItem"><a href="#" class="">BBC progs<i class="icon-edit pull-right"></i></a></li>
+            					<li class="queryItem"><a href="#" class="">History<i class="icon-edit pull-right"></i></a></li>
            				 	</ul>
       					</div>
     				</div>
@@ -76,7 +81,7 @@
         					Channels
       					</a>
     				</div>
-    				<div id="collapseChannel" class="accordion-body collapse in">
+    				<div id="collapseChannel" class="accordion-body collapse">
       					<div class="accordion-inner">
         					<ul class="nav nav-list" id="channelsList">
             					<li><a href="#" class="btn btn-small">All</a></li>
@@ -93,7 +98,7 @@
        					 Genres
       				</a>
     			</div>
-    			<div id="collapseGenre" class="accordion-body collapse in">
+    			<div id="collapseGenre" class="accordion-body collapse">
       				<div class="accordion-inner">
 		            	<ul class="nav nav-list" id="genresList">
         					<li><a href="#" class="btn">All</a></li>
@@ -144,12 +149,12 @@
 	<div id="queryModal" class="modal hide" role="dialog">
     	<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal">&times;</button>
-    		<h3 id="titleHeader">Edit Search</h3>
+    		<h3 id="titleHeader">Edit Search Query</h3>
   		</div>
   		<div class="modal-body">
         	<form>
             	<fieldset>
-                	<Label>Call this search:</Label>
+                	<Label>Call this query:</Label>
                 	<input id="queryName" type="text" placeholder="name for this search.." >
                     <Label>Selector:</Label>
                 	<textarea id="selector" class="input-block-level" rows="5" placeholder='{"channel":"BBC 2"}'></textarea>
@@ -160,8 +165,8 @@
   		</div>
   		<div class="modal-footer">
     	<a href="#" class="btn" data-dismiss="modal">Cancel</a>
-        <a href="#" class="btn btn-warning" id="testQuery">Test</a>
-        <a href="#" class="btn btn-warning" id="deleteQuery">Delete Search</a>
+        <a href="#" class="btn btn-warning" id="testQuery">Test Query</a>
+        <a href="#" class="btn btn-warning" id="deleteQuery">Delete Query</a>
 
     	<a href="#" class="btn btn-primary" id="saveQuery">Save</a>
   		</div>    

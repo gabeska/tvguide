@@ -47,6 +47,15 @@ var HiddenProgrammeSchema = new mongoose.Schema({
 });
 var HiddenProgramme = mongoose.model("hiddenprogrammes", HiddenProgrammeSchema);
 
+var QuerySchema = new mongoose.Schema({
+    queryName: String,
+    selector: String,
+    sortNr: Number,
+    querySortOrder: String
+
+});
+
+var Query = mongoose.model('queries', QuerySchema);
 
 // all environments
 app.set('port', process.env.PORT || 4000);
@@ -241,10 +250,49 @@ app.get('/genres', function(req, res){
 		});
 });
 
-// init dreambox PVR
+
+app.get('/queries', function(req, res) {
+    return Query.find( function( err, queries) {
+        if(!err) {
+            return res.send(queries);
+        } else {
+            return console.log(err);
+        }
+    });
+});
+
+app.post('/addquery', function( req, res) {
+    // add a new query or modify an existing one, based on the name
+    var b=req.body;
+    Query.findOneAndUpdate({queryName:b.queryName},{selector:b.selector}, {upsert:true},function(err, query) {
+        if (!err) {
+            console.log('added query '+query.queryName);
+            return res.send(query);
+        } else {
+            res.end(err);
+            return console.log(err);
+        }
+    });
+});
+
+app.post('/deletequery', function ( req, res) {
+    var b=req.body;
+	console.log('supposed to remove '+req.body.queryName);
+    Query.findOneAndRemove({queryName:b.queryName}, function (err, query) {
+        if (!err) {
+            console.log('removed query: '+query.queryName);
+            return res.send(query);
+        } else {
+            res.end(err);
+            return console.log(err);
+        }
+    } );
+    });
+
+
+
+    // init dreambox PVR
 dreambox.readChannelMap('channels.txt');
-
-
 
 
 http.createServer(app).listen(app.get('port'), function(){

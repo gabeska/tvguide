@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var channels=[];
 	var minimacURL="http://192.168.178.42:4000/";
 	
-	queries.store("queries");
+	//queries.store("queries");  // todo: localstorage seems unreliable on firefox + doesn't work with private browsing on ipad -> store in server
+	
 	console.log('document ready');
 	
 	
@@ -14,6 +15,7 @@ $(document).ready(function(){
 		$.getJSON(minimacURL+'programmes', function(data) {
 	
 			programmes=TAFFY(data);
+			calcProgrammeLength();
 			//var prog=programmes().first();
 			//console.log(prog.title,prog.category, prog.channel, prog.start, prog.stop, prog.desc);
 			$.getJSON(minimacURL+'channels', function(data) {
@@ -25,13 +27,31 @@ $(document).ready(function(){
 				genres=data;
 				refreshGenres();
 			});
+	
+			$.getJSON(minimacURL+'queries', function(data) {
+				queries=TAFFY(data);
+				refreshQueries();
+			});
 			
-			refreshQueries();
 			$("#refreshBtn").button('reset');
 			console.log('finished reloadData');
 		});
 		
 	}
+	
+	function calcProgrammeLength() {
+		programmes().each(function (programme, pnum) {
+				var dStop=new Date(programme.stop);
+				var dStart=new Date(programme.start);
+				
+				var plength=Math.ceil(dStop-dStart)/1000/60; // to do: handle this once on the server!
+				
+				programmes(programme.___id).update({length:plength},false);
+			
+			});
+	}
+	
+	
 	function clearActive() {
 		$("#genresList li").removeClass('active');
 		$("#channelsList li").removeClass('active');
@@ -46,14 +66,14 @@ $(document).ready(function(){
 		//var icon='<i class="icon-remove pull-right"></i>';
 		queries().each(function (query, qnum) {
 			console.log(query);
-			console.log(query.___id);
-			var icon = $('<i>').attr('class','icon-remove pull-right').attr('data-queryid',query.___id);
+			console.log(query._id);
+			var icon = $('<i>').attr('class','icon-edit pull-right').attr('data-queryid',query._id);
 			//	var icon = document.createElement('i');
 
 			queriesList.append(
 				//icon.attr('class','icon-remove pull-right').attr('data-queryId',query.___id);
 				$('<li>').attr('class','queryItem').append(
-						$('<a>').attr('href','#').attr('data-selector',JSON.stringify(query.selector)).append(
+						$('<a>').attr('href','#').attr('data-selector',query.selector).append(
 						query.queryName).append(icon)
 					)				
 			);
@@ -76,6 +96,18 @@ $(document).ready(function(){
 			setTableData(JSON.parse(selector));
 		});
 		
+				// button handler
+		$("#searchesHeading").off('click','i');
+		$("#searchesHeading").on('click', 'i', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+				
+			showQueryModal();
+				
+			//}
+		});
+		
+		
 		
 			
 			// button handler
@@ -83,19 +115,13 @@ $(document).ready(function(){
 		$("#queriesList").on('click', 'i', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
-			if (confirm('remove this query?')) {
-			
+			//if (confirm('edit this query?')) {
 				var queryId=$(this).attr('data-queryid');
-				console.log('removing query: '+ queryId);
-	
-				queries(queryId).remove();
-				refreshQueries();
-			
-			}
-			
-	
+				console.log('editing query: '+ queryId);
+				showQueryModal(queryId);
+				
+			//}
 		});
-		
 	}
 	
 	function refreshGenres() {
@@ -192,13 +218,12 @@ $(document).ready(function(){
 				showChannel=false;
 			}
 		}
-		programmes(selector).limit(1000).order(sortOrder).each(function (programme,pnumber) {
+		programmes(selector).limit(5000).order(sortOrder).each(function (programme,pnumber) {
 				listView.append($('<li>').attr('class','programmeItem')
 					.append($('<a>').attr('href','#').attr('data-programmeId',programme._id)
 					.append(formatStartStop(programme.start, programme.stop)+': '+programme.title,showChannel?' ('+programme.channel+')':'')));		
 					//todo use template!
 		});
-		
 		
 		
 		programmesList.on('click', 'a', function(e) {
@@ -253,17 +278,25 @@ $(document).ready(function(){
 		var showChannel=true;
 		var showCategory=true;
 	
-		
-		var progData=programmes(selector).limit(1000).select("title","channel","start","stop","category","_id","desc");	
+		var validData=true;
+		var progData=programmes(selector).limit(5000).select("title","channel","start","stop","category","_id","desc");	
 		//console.dir(progData);
-		
+		if (progData.length<1) {
+			validData=false;
+		}
 		
 		var maxTitleLength=60;
 		var maxChannelLength=30;
 		var windowWidth=$(window).width();
-		if (windowWidth<800) {
+		if (windowWidth<1050) {
+			maxTitleLength=48;
+			maxChannelLength=18;
+		} else if (windowWidth<800) {
 			maxTitleLength=36;
 			maxChannelLength=18;
+		} else if (windowWidth>1400) {
+			maxTitleLength=100;
+			maxChannelLength=40;
 		}
 		// todo: do this in CSS
 		
@@ -290,22 +323,34 @@ $(document).ready(function(){
 		dataTable.fnSetColumnVis(2,showChannel);
 		dataTable.fnSetColumnVis(3,showCategory);
 
+
+		if(!validData) {
+			console.log('query returned no programmes');
+			var emptyRow=['No Programmes for this selector',0,0,0,0,0,0]
+			progData.push(emptyRow);
+		}
+		
+		
 		dataTable.fnAddData(progData);
 		dataTable.fnAdjustColumnSizing();
-	
-	
-		/* Click event handler */
-		$('#datatable tbody').off('click');	
-		$('#datatable tbody').on('click', 'tr td:first-child', function (e) {
-			e.preventDefault();
-			//var aData = dataTable.fnGetData( this);
-			var p = this.parentElement;
-			var pData = dataTable.fnGetData( p );
-			
-			var iId = pData[4];
 		
-			showProgrammeModal(iId);
-	} );
+		
+		/* Click event handler */
+		
+		$('#datatable tbody').off('click');	
+		// only attach the programme click handler if there is something to click on
+		if(validData) {
+			$('#datatable tbody').on('click', 'tr td:first-child', function (e) {
+				e.preventDefault();
+				//var aData = dataTable.fnGetData( this);
+				var p = this.parentElement;
+				var pData = dataTable.fnGetData( p );
+				
+				var iId = pData[4];
+			
+				showProgrammeModal(iId);
+			} );
+		}
 	
 	}
 	
@@ -356,15 +401,40 @@ $(document).ready(function(){
 
 	});
 	
+	
+	function showQueryModal(queryId) {
+		console.log('showQueryModal: id='+queryId);
+		if(queryId) {
+			var query=queries({_id:queryId}).first();
+			console.log('showing query modal for: '+query.queryName);
+			console.log('with selector: '+query.selector);
+			$("#queryModal #queryName").val(query.queryName);
+		
+			$("#queryModal #selector").val(query.selector);
+		} else {
+			console.log("no queryId");
+			$("#queryModal #queryName").val("");
+			$("#queryModal #selector").val('{"field":"value"}');	
+		}
+
+		$("#queryModal").modal("show");
+		//$('#queryModal').attr("data-queryId",queryId);
+	}
+	
+	
 	$('#queryModal').on('click','#testQuery', function(e) {
 		e.preventDefault();
 		console.log('test query');
 		var selectorText = $("#selector").val();
-		console.log(selectorText);
+		console.log("text: "+selectorText);
+	
 		var selector = JSON.parse(selectorText);
-		console.log(selector);
+
 		
-		programmes(selector).limit(1000).each(function (programme,pnumber) {
+		console.log("query object: "+selector);
+		alert('query returns '+programmes(selector).count()+' programmes.');
+		
+		programmes(selector).limit(100).each(function (programme,pnumber) {
 				console.log(programme);
 
 		});	
@@ -372,31 +442,62 @@ $(document).ready(function(){
 		
 	});
 	
+	
 	$('#queryModal').on('click','#saveQuery', function(e) {
 		e.preventDefault();
 		console.log('save query');
 		var queryName = $("#queryName").val();
-		console.log (queryName);
+		console.log ("name: "+queryName);
 		var selectorText = $("#selector").val();
-		console.log(selectorText);
-		var selector = JSON.parse(selectorText);
-		console.log(selector);
+		console.log("selector text: "+selectorText);
 		
+		// todo: add validation for name & query; add description box
+		
+		if(queries({queryName:queryName}).count()>0) {
+			if(confirm('replace existing query?')) {
+				queries({queryName:queryName}).remove();
+			} else {
+				return;
+			}
+		}
 	
-		var query={"queryName":queryName,"selector":selector};
-		queries.merge(query,{key:"queryName"});
+		var query={"queryName":queryName,"selector":selectorText};
+		//queries.merge(query,{key:"queryName"});
 		
-		queries().each(function (query, qnum) {
-			console.log(query);	
+		$.post(minimacURL+'addquery', query, function(data) {
+			queries.insert(data)
+			console.log(data);
+			refreshQueries();
 		});
 		
 		$("#queryModal").modal('hide');
-		refreshQueries();
+		
 		
 	});
+	$('#queryModal').on('click','#deleteQuery', function(e) {
+		e.preventDefault();
+		console.log('delete query');
+		var queryName = $("#queryName").val();
+		console.log ("name: "+queryName);
+		if(confirm('delete this query?')) {
+			queries({queryName:queryName}).remove();
+	
+			var query = {
+				queryName: queryName
+			}
+			$.post(minimacURL+'deletequery',query,function(data) {
+				console.log(data);
+				$("#queryModal").modal('hide');
+				refreshQueries();
+	
+			});
 	
 	
-	
+		}
+		
+		
+		});
+
 	$('header').on('click', "#refreshBtn", function(e){
 		$(this).button('loading');
 		reloadData();
