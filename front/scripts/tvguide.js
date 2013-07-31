@@ -15,7 +15,7 @@ $(document).ready(function(){
 		$.getJSON(minimacURL+'programmes', function(data) {
 	
 			programmes=TAFFY(data);
-			calcProgrammeLength();
+			//calcProgrammeLength();
 			//var prog=programmes().first();
 			//console.log(prog.title,prog.category, prog.channel, prog.start, prog.stop, prog.desc);
 			$.getJSON(minimacURL+'channels', function(data) {
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		});
 		
 	}
-	
+	/*
 	function calcProgrammeLength() {
 		programmes().each(function (programme, pnum) {
 				var dStop=new Date(programme.stop);
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			
 			});
 	}
-	
+	*/
 	
 	function clearActive() {
 		$("#genresList li").removeClass('active');

@@ -1,3 +1,5 @@
+//#!/usr/local/bin/node
+
 var request = require('superagent');
 var mongoose = require('mongoose');
 var async = require('async');
