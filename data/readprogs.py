@@ -39,7 +39,9 @@ def readXMLguide(filename):
         start=parser.parse(p.get('start'))
         stop=parser.parse(p.get('stop'))
         channel=channeldict[p.get('channel')]
-        
+
+        lengthInMinutes = (stop-start).total_seconds()/60
+
         title=p.find('title').text
         #print title
         desc=p.find('desc')
@@ -47,8 +49,8 @@ def readXMLguide(filename):
             desc=''
         else:
             desc=desc.text
-            
-            
+           
+
         categories=[category.text for category in p.findall('category')]
         
         category=p.find('category')
@@ -62,7 +64,7 @@ def readXMLguide(filename):
         #for cat in categories:
         #    categoryset.add(cat)
         
-        prog={'title':title,'start':start,'stop':stop,'channel':channel,'desc':desc,'category':category, 'show':True,'source':'XMLtv'}
+        prog={'title':title,'start':start,'stop':stop,'length':lengthInMinutes,'channel':channel,'desc':desc,'category':category, 'show':True,'source':'XMLtv'}
         
         programmelist.append(prog)
 

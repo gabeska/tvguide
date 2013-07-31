@@ -1,17 +1,19 @@
 var request = require('superagent');
 var mongoose = require('mongoose');
+var async = require('async');
 
 
-var at = 'http://atlas.metabroadcast.com/3.0/schedule.json'
+var atlas = 'http://atlas.metabroadcast.com/3.0/schedule.json'
 
 mongoose.connect("mongodb://localhost/myguide");
 
-//todo: move these to a central file!
+//todo: move these to a central file! (or stop using mongoose)
 var ProgrammeSchema = new mongoose.Schema({
 	category:{type:String, index:true},
 	title: {type:String,index:true},
 	start: {type:Date,index:true},
 	stop: Date,
+	length: Number,
 	channel: {type:String,index:true},
 	desc: String,
 	show: Boolean,
@@ -74,30 +76,32 @@ var extractGenres = function(genres) {
 };
 	
 
-
 var Programme = mongoose.model("Programme", ProgrammeSchema);
-//Programme.on('error', handleError);
+
 var schedule={};
 
 
-var clearProgrammes = function() {
+var clearProgrammes = function(callback) {
 	Programme.remove({source:"Atlas"}, function(err){
 		if(!err) {
-			console.log('programmes cleared')
+			console.log('programmes cleared');
+			callback();
 		} else {
 			console.log('error: '+err);
+			callback(err);
 		}
 	});
 
 };
 
 
-var getWeeklySchedule = function(channelName) {
+var getWeeklySchedule = function(channelName,callback) {
+	console.log('getWeeklySchedule for '+channelName);
 	var channels={'BBC 1':'cbbh','BBC 2':'cbbG','BBC 3':'cbbP','BBC 4':'cbbQ'};
 	addChannel(channelName);
 	
 	request 
-	.get(at) //NB doesn't work in node REPL (thinks .get is a keyword)
+	.get(atlas) //NB doesn't work in node REPL (thinks .get is a keyword)
 	.query({from:'now'})
 	.query({to:'now.plus.168h'})
 	.query({publisher:'bbc.co.uk'})
@@ -110,7 +114,7 @@ var getWeeklySchedule = function(channelName) {
 		//console.log(res.type);
 		//console.log('status: '+res.status);
 		schedule=retobject.items;
-	
+		console.log('got data for '+channelName);
 		var programmes=[];
 		schedule.forEach(function(item) {
 			var title=item.title;
@@ -118,70 +122,52 @@ var getWeeklySchedule = function(channelName) {
 				title=item.container.title;
 				//console.log('container title: '+item.container.title);
 			}
-				//console.log('item title: '+item.title);	
-				//console.log('broadcast start: '+item.broadcasts[0].transmission_time);
-				//console.log('broadcast stop: '+item.broadcasts[0].transmission_end_time);
-				//console.log('description: '+item.description);	
-				
-				var genre="Atlas";
-				var BBCgenres=[];
-				//console.log('------');
-				//console.log('genres for programme: '+title);
-				if (item.genres) {
-					/*
-					if(item.genres[0]){
-						genre=item.genres[0].replace(/.*\//, '');
-					}
-					console.log('-------');
-
-					for (var genre in item.genres)
-					{
-						console.log(item.genres[genre]);
-						BBCgenres.push(item.genres[genre].replace(/.*\//, ''));	 
-					};*/
-					genre=extractGenres(item.genres);
 					
-				}
-				//console.log('genre: '+genre);	
-		
-				//console.log('---------');
-				var startTime = new Date(item.broadcasts[0].transmission_time);
-				var stopTime = new Date(item.broadcasts[0].transmission_end_time);
-		
-				var uri='';
-				if (item.uri) {
-					uri=item.uri;
-				}
-		
-				//var genre="Atlas"; // todo map atlas genres to XMLtv genres somewhere
-				//	var hiddenprogramme = new HiddenProgramme({title:req.body.title});
-				var programme = new Programme({
-											category:genre, 
-											title:title, 
-											start:startTime,
-											stop:stopTime,
-											channel:channelName,
-											desc:item.description,
-											show:true,
-											uri:uri,
-											source:"Atlas"});
-		
-				//console.log('pre-save');
+			var genre="Atlas";
+			var BBCgenres=[];
+			//console.log('------');
+			//console.log('genres for programme: '+title);
+			if (item.genres) {
+				genre=extractGenres(item.genres);
+			}
+			var startTime = new Date(item.broadcasts[0].transmission_time);
+			var stopTime = new Date(item.broadcasts[0].transmission_end_time);
+			
+			var plength=Math.ceil(stopTime-startTime)/1000/60; 
 				
-				programme.save(function (err,p) {
-					//console.log('save callback');
-					if(err) {
-						console.log('error in save');
-						console.log(err);	
-					} else {
-						//console.log('saved: '+p);
-					}
-				});
+			var uri='';
+			if (item.uri) {
+				uri=item.uri;
+			}
+			var programme = new Programme({
+										category:genre, 
+										title:title, 
+										start:startTime,
+										stop:stopTime,
+										length:plength,
+										channel:channelName,
+										desc:item.description,
+										show:true,
+										uri:uri,
+										source:"Atlas"});
+		
+			programme.save(function (err,p) {
+				//console.log('save callback');
+				if(err) {
+					console.log('error in save');
+					console.log(err);	
+					callback(err);
+				} else {
+					//console.log('saved: '+p);
+				}
+			});
 			
 		
 		}); // forEach
-		hideProgrammes();
+		
 		console.log('update ready for '+ channelName);
+		callback();
+		
 	});
 };
 
@@ -193,13 +179,14 @@ var ChannelSchema = new mongoose.Schema({
 });
 var Channels = mongoose.model("channels",ChannelSchema);
 
-
-var clearChannels = function() {
+var clearChannels = function(callback) {
 	Channels.remove({source:"Atlas"}, function(err){
 		if(!err) {
-			console.log('channels cleared')
+			console.log('channels cleared');
+			callback();
 		} else {
 			console.log('error: '+err);
+			callback(err);
 		}
 	});
 
@@ -222,10 +209,12 @@ var addChannel=function(channelName) {
 		}
 	});
 	
-	
 };
-var hideProgrammes = function () {
+var hideProgrammes = function (err) {
 	console.log('hideprogrammes');
+	if (err) {
+		console.log(err);
+	}
 	
 	var progTitles=[];
 	HiddenProgramme.find({},'title').exec(function(err,progs) {
@@ -238,21 +227,40 @@ var hideProgrammes = function () {
 			if (err) return handleError(err);
 			console.log('The number of updated documents was %d', numberAffected);
 			console.log('The raw response from Mongo was ', raw);
+			process.exit(0); //todo: this shouldn't be necessary! 
 		});
 	});
 
 };
 
-// todo: use async library
-console.log('start');
+var callback=function(err,results) {
+	if(err) {
+		console.log (err);
+		throw err ;
+	}
+	if(results) {
+		console.log('results: '+results);
+	}
 
-clearChannels();
-clearProgrammes();
-getWeeklySchedule('BBC 1');
-getWeeklySchedule('BBC 2');
-getWeeklySchedule('BBC 3');
-getWeeklySchedule('BBC 4');
-//hideProgrammes(); // doesn't work here (async), moved to callback
+}
+
+var channelsToRetrieve = ['BBC 1','BBC 2','BBC 3','BBC 4'];
+
+function done(err) {
+	console.log('done');
+	if(err) {
+		throw err;
+	}
+	hideProgrammes();
+}
+
+async.series([
+	clearChannels(callback),
+	clearProgrammes(callback)
+	],
+	async.forEach(channelsToRetrieve, getWeeklySchedule,done)
+ );
+
 
 console.log('end');
 

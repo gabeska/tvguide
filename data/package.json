@@ -2,7 +2,7 @@
   "name": "data",
   "version": "0.0.0",
   "description": "XMLTV Data Updater",
-  "main": "app.js",
+  "main": "atlas.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,9 @@
   "license": "BSD",
 
   "dependencies": {
-    "xml2js": "*"
+    "superagent": "*",
+    "mongoose":"*",
+    "async":"*"
   }
 
 }
