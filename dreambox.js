@@ -23,7 +23,7 @@ var doRequest = function (verb, subject, callback) {
 	
 		console.log('dreambox request status: '+response.statusCode);
 		var parsedData=JSON.parse(retrievedData);
-		
+		console.log(retrievedData);
 		if(callback) {
 			callback(parsedData);	
 		}
@@ -101,14 +101,15 @@ function zapToChannel() {
 
 }
 
-var addTimer = function (serviceName, startTime, stopTime, title, description) {
+var addTimer = function (serviceName, startTime, stopTime, title, description, callback) {
 	// schedule a recording on service 'serviceName' from 'startTime' until 'stopTime', with title and description
 	console.log("addtimer: "+serviceName+":"+startTime+" - "+stopTime+":"+title);
     var sRef=channelMap[serviceName];
 
-    if(!sRef||sRef===""){
-	    console.error("error: no channel reference for "+sRef);
-        return;
+    if(!sRef||sRef===""){ // dreambox doesn't know this channel
+	    console.error("error: no channel reference for "+serviceName);
+        callback("error: no channel reference for "+serviceName,'');
+		return;
     }        
 
 	startTime=new Date(startTime).getTime()/1000; // dreambox wants times in seconds since 1/1/1970
@@ -116,6 +117,7 @@ var addTimer = function (serviceName, startTime, stopTime, title, description) {
 
 	if(stopTime<startTime){
 	    console.error("error: endtime before starttime");
+		callback("error: endtime before starttime",'');
 	    return;
     }
 	
@@ -128,8 +130,7 @@ var addTimer = function (serviceName, startTime, stopTime, title, description) {
     params+='&description='+encodeURIComponent(description)+'&disabled=0&justplay=0&repeated=0';
 
     doRequest('timeradd?'+params,'',function(response){
-        console.log(response); 
-		return response;
+		callback(null,response);
     });
 	
 

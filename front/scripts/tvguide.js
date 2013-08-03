@@ -30,6 +30,8 @@ $(document).ready(function(){
 	
 			$.getJSON(minimacURL+'queries', function(data) {
 				queries=TAFFY(data);
+				queries.sort("queryName");
+				
 				refreshQueries();
 			});
 			
@@ -38,19 +40,7 @@ $(document).ready(function(){
 		});
 		
 	}
-	/*
-	function calcProgrammeLength() {
-		programmes().each(function (programme, pnum) {
-				var dStop=new Date(programme.stop);
-				var dStart=new Date(programme.start);
-				
-				var plength=Math.ceil(dStop-dStart)/1000/60; // to do: handle this once on the server!
-				
-				programmes(programme.___id).update({length:plength},false);
-			
-			});
-	}
-	*/
+	
 	
 	function clearActive() {
 		$("#genresList li").removeClass('active');
@@ -289,7 +279,7 @@ $(document).ready(function(){
 		var maxChannelLength=30;
 		var windowWidth=$(window).width();
 		if (windowWidth<1050) {
-			maxTitleLength=48;
+			maxTitleLength=50;
 			maxChannelLength=18;
 		} else if (windowWidth<800) {
 			maxTitleLength=36;
@@ -384,8 +374,6 @@ $(document).ready(function(){
 				// todo: refresh
 				$("#programmeModal").modal('hide');
 			}
-
-
 	});
 	
 	$('#programmeModal').on('click','#recordProgramme', function(e) {
@@ -398,10 +386,8 @@ $(document).ready(function(){
 				recordProgramme(programme);
 				$("#programmeModal").modal('hide');
 			}
-
 	});
-	
-	
+		
 	function showQueryModal(queryId) {
 		console.log('showQueryModal: id='+queryId);
 		if(queryId) {
@@ -525,6 +511,11 @@ $(document).ready(function(){
 			};
 
 			$.post(minimacURL+'recordprogramme',programmeDetails, function(data) {
+				//alert('Recording added');
+				alert(data);
+				console.log(data);
+			}).fail(function(data) {
+				alert('Recording not added. Reason: '+data.responseText);
 				console.log(data);
 			});
 	
