@@ -60,7 +60,7 @@
       "servicereference": "1:0:19:1F:1A:1F4:FFFF0000:0:0:0:"
    },
    {
-      "guideName": "Holland Doc 24",
+      "guideName": "HollandDoc 24",
       "dreamboxName": "Holland Doc 24",
       "servicereference": "1:0:1:1B70:7:1F4:FFFF0000:0:0:0:"
    },
@@ -160,7 +160,7 @@
       "servicereference": "1:0:19:CB:C:1F4:FFFF0000:0:0:0:"
    },
    {
-      "guideName": "Net 5",
+      "guideName": "NET 5",
       "dreamboxName": "Net 5",
       "servicereference": "1:0:1:1772:6:1F4:FFFF0000:0:0:0:"
    },
@@ -460,7 +460,7 @@
       "servicereference": "1:0:1:BA:1A:1F4:FFFF0000:0:0:0:"
    },
    {
-      "guideName": "GoedTV",
+      "guideName": "Goed TV",
       "dreamboxName": "GoedTV",
       "servicereference": "1:0:1:6D63:1C:1F4:FFFF0000:0:0:0:"
    },
@@ -770,7 +770,7 @@
       "servicereference": "1:0:1:64:64:1F4:FFFF0000:0:0:0:"
    },
    {
-      "guideName": "Veronica/Disney XD",
+      "guideName": "Veronica",
       "dreamboxName": "Veronica/Disney XD",
       "servicereference": "1:0:1:1771:6:1F4:FFFF0000:0:0:0:"
    },
