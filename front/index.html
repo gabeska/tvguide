@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>MyGuide</title>
 <!--
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -18,12 +18,30 @@
 
 
 <style>
+	
+	
 	td:first-child {cursor:pointer;}
+	td {white-space:nowrap;}
 	
 		td {font-size:13px;}
 	@media (min-width: 1025px) {
 		td {font-size:14px;}
 	}
+	.accordionList {
+		*margin-top: -1px;
+		max-height:450px;
+		overflow:hidden;
+		overflow-y:auto;
+		-webkit-overflow-scrolling:touch;
+	}
+	.dataTables_scrollBody {
+		*margin-top: -1px;
+		overflow:hidden;
+		overflow-y:scroll;
+		-webkit-overflow-scrolling: touch;	
+	}
+	
+	
 	
 }
 	
@@ -39,7 +57,8 @@
     	<!--
         <h1 class="span12">Myguide</h1>
         -->
-        
+         
+         <hr>
         <button class="btn btn-danger" id="refreshBtn" data-loading-text="Loading...">Reload</button>
         <div class="btn-group" data-toggle="buttons-radio">
 		  <button type="button" class="btn btn-primary active" id="hideCrapBtn">Hide Crap</button>
@@ -53,10 +72,12 @@
   		  <button type="button" class="btn btn-primary active">Sort by Time</button>
 		</div>
         -->
-        
+    <hr>
+    <p></p> 
+       
         
     </header>
-    <hr>
+   
 	<section class="row-fluid">
     	<div class="span3">
         	<div class="accordion" id="accordion2">
@@ -68,7 +89,7 @@
     				</div>
     				<div id="collapseSearch" class="accordion-body collapse in">
       					<div class="accordion-inner">
-        					<ul class="nav nav-list" id="queriesList">
+        					<ul class="nav nav-list accordionList scrollable" id="queriesList">
                                 <li class="queryItem"><a href="#" class="">Films<i class="icon-edit pull-right"></i></a></li>
             					<li class="queryItem"><a href="#" class="">BBC progs<i class="icon-edit pull-right"></i></a></li>
             					<li class="queryItem"><a href="#" class="">History<i class="icon-edit pull-right"></i></a></li>
@@ -84,7 +105,7 @@
     				</div>
     				<div id="collapseChannel" class="accordion-body collapse">
       					<div class="accordion-inner">
-        					<ul class="nav nav-list" id="channelsList">
+        					<ul class="nav nav-list accordionList scrollable" id="channelsList">
             					<li><a href="#" class="btn btn-small">All</a></li>
            					 	<li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
             					<li class="channelItem"><a href="#" class="btn">BBC 2</a></li>
@@ -101,7 +122,7 @@
     			</div>
     			<div id="collapseGenre" class="accordion-body collapse">
       				<div class="accordion-inner">
-		            	<ul class="nav nav-list" id="genresList">
+		            	<ul class="nav nav-list accordionList scrollable" id="genresList">
         					<li><a href="#" class="btn">All</a></li>
           			  		<li class="genreItem"><a href="#" class="btn">Comedy</a></li>
             				<li class="genreItem"><a href="#" class="btn">Film</a></li>
@@ -117,7 +138,7 @@
 
 
 	<div class="span9">
-		<table id="datatable" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-bordered" >
+		<table id="datatable" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-bordered scrollable" >
 		</table>
 	</div>
 
@@ -181,6 +202,7 @@
 <script src="scripts/moment.min.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
 <script src="scripts/dataTables.bootstrap.js"></script>
+<script src="scripts/dataTables.scroller.js"></script>
 <script src="scripts/tvguide.js"></script>
 
 </body>

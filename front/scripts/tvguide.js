@@ -1,43 +1,133 @@
+// collected (experimental) utility functions
+function debouncer( func , timeout ) {
+   var timeoutID , timeout = timeout || 200;
+   return function () {
+      var scope = this , args = arguments;
+      clearTimeout( timeoutID );
+      timeoutID = setTimeout( function () {
+          func.apply( scope , Array.prototype.slice.call( args ) );
+      } , timeout );
+   }
+}
+// end
+
 $(document).ready(function(){
 	var programmes=TAFFY();
 	var queries=TAFFY();
 	var genres=[];
 	var channels=[];
-	var minimacURL="http://192.168.178.42:4000/";
 	
 	//queries.store("queries");  // todo: localstorage seems unreliable on firefox + doesn't work with private browsing on ipad -> store in server
 	
 	console.log('document ready');
 	
+	$(document).on('touchmove',function(e){
+  		e.preventDefault();
+	});
+	$('.scrollable').bind('touchmove', function(e){
+  		e.stopPropagation();
+	});
 	
-	function reloadData() {
+	$(window).resize(debouncer( function(e) {
+	  var windowheight=$(window).height();
+	  var windowwidth=$(window).width();
+	  console.log('window resize to: '+windowheight+'x'+windowwidth);
 	
-		$.getJSON(minimacURL+'programmes', function(data) {
+	  setupUI(windowheight, windowwidth);
+	 
+	  setTableData();	  
 	
-			programmes=TAFFY(data);
-			//calcProgrammeLength();
-			//var prog=programmes().first();
-			//console.log(prog.title,prog.category, prog.channel, prog.start, prog.stop, prog.desc);
-			$.getJSON(minimacURL+'channels', function(data) {
-				channels=data;
+	}));
+	
+	
+	function setupUI(height,width) {
+		
+		if (height<800) {
+		  $(".accordionList").css("max-height","450px");
+	  	} else {
+		  $(".accordionList").css("max-height","680px");
+	  	}
+		var dataTable= $('#datatable').dataTable();
+		var newTableheight = $(window).height() - 260;
+	    console.log('new table height: '+ newTableheight);
+		var oSettings = dataTable.fnSettings();
+		oSettings.oScroll.sY = newTableheight + "px";
+		dataTable.fnDraw();
+
+	}
+	
+/*	
+	$(window).on('orientationchange', function(e) {
+	  var windowheight=$(window).height();
+	  var windowwidth=$(window).width();
+	  console.log('window orientationchange to: '+windowheight+'x'+windowwidth);
+	  
+	  if(navigator.platform == 'iPad') {
+		  alert('window orientationchange to: '+windowheight+'x'+windowwidth);
+	  }
+
+	});
+	*/
+	
+	function getProgrammes() {
+		return $.getJSON('/programmes');	
+	}
+	function getChannels() {
+		return $.getJSON('/channels');
+	}
+	
+	function getGenres() {
+		return $.getJSON('genres');
+	}
+	
+	function getQueries() {
+		return $.getJSON('queries');
+	}
+	
+	
+	function getEverything() {
+		console.log('getEverything');
+		$.when(getProgrammes(), getChannels(), getGenres(), getQueries())
+			.then(function(progsJS,channelsJS,genresJS,queriesJS) {
+				console.log(progsJS, channelsJS, genresJS, queriesJS);
+				// return value is array [json_Data, status, jqXHR]
+				programmes=TAFFY(progsJS[0]);
+				
+				channels=channelsJS[0];
 				channels.sort(function(a,b){ return a.name>b.name?1:-1;});
-				refreshChannels();
-			});
-			$.getJSON(minimacURL+'genres', function(data) {
-				genres=data;
-				refreshGenres();
-			});
-	
-			$.getJSON(minimacURL+'queries', function(data) {
-				queries=TAFFY(data);
+				genres=genresJS[0];
+				queries=TAFFY(queriesJS[0]);
 				queries.sort("queryName");
 				
+				refreshChannels();
+				refreshGenres();
 				refreshQueries();
-			});
 			
-			$("#refreshBtn").button('reset');
-			console.log('finished reloadData');
-		});
+		},
+			function() {
+				alert('error retrieving data');
+				console.log('error getting data from server');
+			}
+		
+		)
+	}
+	
+	
+	
+	function reloadData() {
+		
+		getEverything();
+		
+		$("#refreshBtn").button('reset');
+		
+		var windowheight=$(window).height();
+	  	var windowwidth=$(window).width();
+	  
+	  	setupUI(windowheight, windowwidth);
+		setTableData();
+		
+		console.log('finished reloadData');
+		
 		
 	}
 	
@@ -55,8 +145,8 @@ $(document).ready(function(){
 		queriesList.empty(); 
 		//var icon='<i class="icon-remove pull-right"></i>';
 		queries().each(function (query, qnum) {
-			console.log(query);
-			console.log(query._id);
+			//console.log(query);
+			//console.log(query._id);
 			var icon = $('<i>').attr('class','icon-edit pull-right').attr('data-queryid',query._id);
 			//	var icon = document.createElement('i');
 
@@ -116,84 +206,75 @@ $(document).ready(function(){
 	
 	function refreshGenres() {
 		var genresList=$("#genresList");
-		genresList.empty(); // Todo: haalt ook 'All' knop weg!
-			$.each(genres,function (i,c) {
-				//console.log(c);
-				genresList.append(
-					$('<li>').attr('class','genreItem').append(
-						$('<a>').attr('href','#').append(c)
-					)
-				);
-	
-			});
+		genresList.empty().detach();
+		$.each(genres,function (i,c) {
+			//console.log(c);
+			genresList.append(
+				$('<li>').attr('class','genreItem').append(
+					$('<a>').attr('href','#').append(c)
+				)
+			);
 
-			// button handler
-			$("#genresList").off('click');
-			$("#genresList").on('click', 'a', function(e) {
-				console.log('click');
-				e.preventDefault();
-				clearActive();
-				$(this).parent('li').addClass('active');							
-				
-				var category=this.text;
-				if (category=="All") {
-					var selector={};
-				} else {
-					var selector={category:this.text};
-				}
-				//showProgrammes(selector);
-				setTableData(selector);
-			});
+		});
+		genresList.appendTo('#collapseGenre');
+	  
+		// button handler
+		$("#genresList").off('click');
+		$("#genresList").on('click', 'a', function(e) {
+			console.log('click');
+			e.preventDefault();
+			clearActive();
+			$(this).parent('li').addClass('active');							
+			
+			var category=this.text;
+			if (category=="All") {
+				var selector={};
+			} else {
+				var selector={category:this.text};
+			}
+			//showProgrammes(selector);
+			setTableData(selector);
+		});
 	}
 	
 	function refreshChannels() {
 		var channelsList=$("#channelsList");
-		channelsList.empty(); //Todo: haalt ook 'All' knop weg!
-			$.each(channels,function (i,c) {
-				//console.log(c);
-				/*var iconURL=c.iconURL;
-				if(iconURL) {
-					console.log(iconURL);
-				} else {
-					iconURL="#";
-				}*/
-				
-				channelsList.append(
-					$('<li>').attr('class','channelItem').append(
-						$('<a>').attr('href','#').append(
-							c.name)
-						)
-					);
-				//$("#content ul li:last").after('<li><a href="/user/messages"><span class="tab">Message Center</span></a></li>');
-				    //<li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
-	
-			});
+		channelsList.empty().detach(); 
+		$.each(channels,function (i,c) {
+			//console.log(c);
+			/*var iconURL=c.iconURL;
+			if(iconURL) {
+				console.log(iconURL);
+			} else {
+				iconURL="#";
+			}*/
+			
+			channelsList.append(
+				$('<li>').attr('class','channelItem').append(
+					$('<a>').attr('href','#').append(
+						c.name)
+					)
+				);
+		});
+		channelsList.appendTo('#collapseChannel');
 				// button handler
-			$("#channelsList").off('click');
-			$("#channelsList").on('click', 'a', function(e) {
-				console.log('click');
-				e.preventDefault();
-				clearActive();
-				$(this).parent('li').addClass('active');
-				var category=this.text;
-				if (category=="All") {
-					var selector={};
-				} else {
-					var selector={channel:this.text};
-				}
-				//showProgrammes(selector);
-				setTableData(selector);
-			});
+		$("#channelsList").off('click');
+		$("#channelsList").on('click', 'a', function(e) {
+			console.log('click');
+			e.preventDefault();
+			clearActive();
+			$(this).parent('li').addClass('active');
+			var category=this.text;
+			if (category=="All") {
+				var selector={};
+			} else {
+				var selector={channel:this.text};
+			}
+			//showProgrammes(selector);
+			setTableData(selector);
+		});
 
 	}	
-	
-	function formatStartStop(startDate, stopDate) {
-		var startText=moment(startDate).format("dd DD-MM HH:mm");
-		var stopText=moment(stopDate).format("HH:mm");
-		return startText+'-'+stopText;
-	}
-	
-	
 	function showProgrammes(selector) {
 		var programmesList=$("#programmesList");
 		programmesList.empty();
@@ -225,21 +306,27 @@ $(document).ready(function(){
 		
 		
 	}
+	function formatStartStop(startDate, stopDate) {
+		var startText=moment(startDate).format("dd DD-MM HH:mm");
+		var stopText=moment(stopDate).format("HH:mm");
+		return startText+'-'+stopText;
+	}
+	
+	
+	
 	
 	// adjust datatable scrolling height for ipad (experimentally)
 	
 	var windowHeight=$(window).height();
-	var scrollY="700px";
-	var displayLength=25;
-	if (windowHeight<800) {
-		scrollY="440px";
-		displayLength=15;
-	}
+	
+	
+	var scrollY=(windowHeight-260)+"px";
+	
 		// init datatable this way?
 
-		 $('#datatable').dataTable( {
+	$('#datatable').dataTable( {
         "aaData": [],
-        "sDom": '<"top"<"clear">>rt<"bottom"if<"clear">>',
+        "sDom": '<"top"<"clear">>rtS<"bottom"if<"clear">>',
 		"aoColumns": [
             { "sTitle": "Title" },
             { "sTitle": "Time", "iDataSort":5 },
@@ -250,47 +337,70 @@ $(document).ready(function(){
 			{ "bVisible":false} // desc
         	],
 		"sScrollY":scrollY,
+		"bDeferRender":true,
+		//"iDisplayLength":displayLength,
 		"bScrollCollapse":true,
-		"bScrollInfinite": true,
-		"iDisplayLength":displayLength,
+		"bPaginate":false,
 		"aaSorting":[[5, "asc"]]
-//		"bPaginate":false,
 
     	} );
 	
 	
+	
 	function setTableData(selector) {
-		var dataTable=$('#datatable').dataTable();
-		dataTable.attr('data-selector',selector);
+	
+		var dataTable= $('#datatable').dataTable();
+		
+		var currentSelector=selector;
+		
+		if(currentSelector) {
+			$('#datatable').attr('data-selector',JSON.stringify(currentSelector));
+		} else {
+			
+			var selectorAttr=$('#datatable').attr('data-selector');
+			if(selectorAttr) {
+				currentSelector=JSON.parse(selectorAttr);
+			} else {
+				console.log('selector attribute not set');
+			}
+		}
+		
+		console.log('selector: '+JSON.stringify(currentSelector));
+		if(!currentSelector) {
+			console.log('no new or existing selector for datatable');
+			dataTable.fnAdjustColumnSizing(true);
+
+			return;
+		}
+		
 		if (shouldHideCrap()) {
-			selector.show=true; // add criterium to search query to not show programmes that have show set to false
+			currentSelector.show=true; // add criterium to search query to not show programmes that have show set to false
 		} 
 		var showChannel=true;
 		var showCategory=true;
 	
 		var validData=true;
-		var progData=programmes(selector).limit(5000).select("title","channel","start","stop","category","_id","desc");	
+		var progData=programmes(currentSelector).limit(5000).select("title","channel","start","stop","category","_id","desc");	
 		//console.dir(progData);
 		if (progData.length<1) {
 			validData=false;
 		}
-		
 		var maxTitleLength=60;
 		var maxChannelLength=30;
 		var windowWidth=$(window).width();
 		if (windowWidth<1050) {
 			maxTitleLength=50;
 			maxChannelLength=18;
-		} else if (windowWidth<800) {
-			maxTitleLength=36;
-			maxChannelLength=18;
-		} else if (windowWidth>1400) {
+		}  
+		if (windowWidth<800) {
+			
+			maxTitleLength=28;
+			maxChannelLength=12;
+		} 
+		if (windowWidth>1400) {
 			maxTitleLength=100;
 			maxChannelLength=40;
 		}
-		// todo: do this in CSS
-		
-		
 		
 		for (var i=0;i<progData.length;i++) {
 			var time=formatStartStop(progData[i][2], progData[i][3]);
@@ -299,14 +409,14 @@ $(document).ready(function(){
 			progData[i]=[title,time,channel,progData[i][4], progData[i][5], progData[i][2],progData[i][6]];
 			
 		}
-		dataTable.fnClearTable();
+		dataTable.fnClearTable(true);
 	
-		if(selector.channel && typeof(selector.channel)=="string") {
+		if(currentSelector.channel && typeof(currentSelector.channel)=="string") {
 		//don't need to show channel if we're filtering on a single channel
 			showChannel=false;
 			
 		}
-		if(selector.category  && typeof(selector.category)=="string") {
+		if(currentSelector.category  && typeof(currentSelector.category)=="string") {
 			showCategory=false;
 		}
 		
@@ -321,8 +431,8 @@ $(document).ready(function(){
 		}
 		
 		
-		dataTable.fnAddData(progData);
-		dataTable.fnAdjustColumnSizing();
+		dataTable.fnAddData(progData,false);
+		dataTable.fnAdjustColumnSizing(true);
 		
 		
 		/* Click event handler */
@@ -373,6 +483,7 @@ $(document).ready(function(){
 				hideProgrammesWithName(programme.title);
 				// todo: refresh
 				$("#programmeModal").modal('hide');
+				setTableData(); // todo: remember scroll position
 			}
 	});
 	
@@ -425,7 +536,6 @@ $(document).ready(function(){
 
 		});	
 		
-		
 	});
 	
 	
@@ -450,7 +560,7 @@ $(document).ready(function(){
 		var query={"queryName":queryName,"selector":selectorText};
 		//queries.merge(query,{key:"queryName"});
 		
-		$.post(minimacURL+'addquery', query, function(data) {
+		$.post('addquery', query, function(data) {
 			queries.insert(data)
 			console.log(data);
 			refreshQueries();
@@ -471,7 +581,7 @@ $(document).ready(function(){
 			var query = {
 				queryName: queryName
 			}
-			$.post(minimacURL+'deletequery',query,function(data) {
+			$.post('deletequery',query,function(data) {
 				console.log(data);
 				$("#queryModal").modal('hide');
 				refreshQueries();
@@ -510,7 +620,7 @@ $(document).ready(function(){
 				
 			};
 
-			$.post(minimacURL+'recordprogramme',programmeDetails, function(data) {
+			$.post('/recordprogramme',programmeDetails, function(data) {
 				//alert('Recording added');
 				alert(data);
 				console.log(data);
@@ -537,7 +647,7 @@ $(document).ready(function(){
 			// hide locally
 			programmes({title:programmeName}).update({show:false});
 			// hide on server
-			$.post(minimacURL+'hideprogramme',{title:programmeName}, function(data) {
+			$.post('/hideprogramme',{title:programmeName}, function(data) {
 				console.log(data);
 			});
 	
