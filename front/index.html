@@ -18,7 +18,16 @@
 
 
 <style>
-	
+	.container-fluid {
+    padding: 0px;
+}
+
+@media (max-width: 797px) {
+    body { 
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+}
 	
 	td:first-child {cursor:pointer;}
 	td {white-space:nowrap;}
@@ -40,7 +49,9 @@
 		overflow-y:scroll;
 		-webkit-overflow-scrolling: touch;	
 	}
-	
+	.accordion-inner {
+		padding-top:4px;
+	}
 	
 	
 }
@@ -88,13 +99,11 @@
       					</a>
     				</div>
     				<div id="collapseSearch" class="accordion-body collapse in">
-      					<div class="accordion-inner">
-        					<ul class="nav nav-list accordionList scrollable" id="queriesList">
-                                <li class="queryItem"><a href="#" class="">Films<i class="icon-edit pull-right"></i></a></li>
-            					<li class="queryItem"><a href="#" class="">BBC progs<i class="icon-edit pull-right"></i></a></li>
-            					<li class="queryItem"><a href="#" class="">History<i class="icon-edit pull-right"></i></a></li>
-           				 	</ul>
-      					</div>
+                      <ul class="nav nav-list accordionList scrollable accordion-inner" id="queriesList">
+                          <li class="queryItem"><a href="#" class="">Films<i class="icon-edit pull-right"></i></a></li>
+                          <li class="queryItem"><a href="#" class="">BBC progs<i class="icon-edit pull-right"></i></a></li>
+                          <li class="queryItem"><a href="#" class="">History<i class="icon-edit pull-right"></i></a></li>
+                      </ul>
     				</div>
   			</div>
   				<div class="accordion-group">
@@ -104,14 +113,12 @@
       					</a>
     				</div>
     				<div id="collapseChannel" class="accordion-body collapse">
-      					<div class="accordion-inner">
-        					<ul class="nav nav-list accordionList scrollable" id="channelsList">
-            					<li><a href="#" class="btn btn-small">All</a></li>
-           					 	<li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
-            					<li class="channelItem"><a href="#" class="btn">BBC 2</a></li>
-            					<li class="channelItem"><a href="#" class="btn">BBC 3</a></li>
-           				 	</ul>
-      					</div>
+                        <ul class="nav nav-list accordionList scrollable accordion-inner" id="channelsList">
+                            <li><a href="#" class="btn btn-small">All</a></li>
+                            <li class="channelItem"><a href="#" class="btn">BBC 1</a></li>
+                            <li class="channelItem"><a href="#" class="btn">BBC 2</a></li>
+                            <li class="channelItem"><a href="#" class="btn">BBC 3</a></li>
+                        </ul>
     				</div>
   			</div>
              <div class="accordion-group">
@@ -121,14 +128,12 @@
       				</a>
     			</div>
     			<div id="collapseGenre" class="accordion-body collapse">
-      				<div class="accordion-inner">
-		            	<ul class="nav nav-list accordionList scrollable" id="genresList">
-        					<li><a href="#" class="btn">All</a></li>
-          			  		<li class="genreItem"><a href="#" class="btn">Comedy</a></li>
-            				<li class="genreItem"><a href="#" class="btn">Film</a></li>
-            				<li class="genreItem"><a href="#" class="btn">Documentary</a></li>
-            			</ul>
-      				</div>
+                    <ul class="nav nav-list accordionList scrollable accordion-inner" id="genresList">
+                        <li><a href="#" class="btn">All</a></li>
+                        <li class="genreItem"><a href="#" class="btn">Comedy</a></li>
+                        <li class="genreItem"><a href="#" class="btn">Film</a></li>
+                        <li class="genreItem"><a href="#" class="btn">Documentary</a></li>
+                    </ul>
     			</div>
                     
   			</div>

@@ -380,7 +380,7 @@ $(document).ready(function(){
 		var showCategory=true;
 	
 		var validData=true;
-		var progData=programmes(currentSelector).limit(5000).select("title","channel","start","stop","category","_id","desc");	
+		var progData=programmes(currentSelector).order("start").limit(5000).select("title","channel","start","stop","category","_id","desc");	
 		//console.dir(progData);
 		if (progData.length<1) {
 			validData=false;
